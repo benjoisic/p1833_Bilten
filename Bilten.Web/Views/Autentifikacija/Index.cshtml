@@ -1,0 +1,44 @@
+﻿@model Bilten.Web.ViewModels.LoginVM
+@{
+    ViewData["Title"] = "Login";
+    string error_poruka = (string)TempData["error_poruka"];
+    Layout = "_LayoutAnonymous";
+}
+<div class="col-md-4 col-md-offset-4">
+    <h2>MUP HNK Bilten</h2>
+    <hr />
+
+    <form action="/Autentifikacija/Login">
+        <div class="form-group">
+            <label>Username:</label>
+            <div>
+                <input type="text" name="username" value="@Model.username" />
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label>Password:</label>
+            <div>
+                <input type="password" name="password" value="@Model.password" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+
+        <input type="submit" class="form-control btn btn-primary" value="Login" />
+        <br />
+        <input asp-for="ZapamtiPassword" /> Zapamti password
+
+    </form>
+</div>
+
+
+@if(error_poruka != null)
+{
+    <br />
+    <div class="alert alert-danger">
+        @error_poruka
+    </div>
+}

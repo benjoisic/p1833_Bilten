@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bilten.Web", "Bilten.Web\Bilten.Web.csproj", "{EC676D2C-3DDB-49A8-8B8D-02B24896EB98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bilten.Data", "Bilten.Data\Bilten.Data.csproj", "{7804BEFB-1259-4770-9455-86EF4A2D95D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC676D2C-3DDB-49A8-8B8D-02B24896EB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC676D2C-3DDB-49A8-8B8D-02B24896EB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC676D2C-3DDB-49A8-8B8D-02B24896EB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC676D2C-3DDB-49A8-8B8D-02B24896EB98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7804BEFB-1259-4770-9455-86EF4A2D95D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7804BEFB-1259-4770-9455-86EF4A2D95D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7804BEFB-1259-4770-9455-86EF4A2D95D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7804BEFB-1259-4770-9455-86EF4A2D95D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4116FFCD-3D8A-49BB-867C-22C2081E26DD}
+	EndGlobalSection
+EndGlobal

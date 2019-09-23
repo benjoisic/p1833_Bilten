@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Dodaj";
+}
+@using Bilten.Web.ViewModels.Kategorije;
+@model KategorijeDodajVM
+
+<h2>Dodaj novu kategoriju</h2>
+<hr />
+<form action="/Kategorije/Snimi">
+    <label>Naziv:</label>
+    <input type="text" name="naziv" />
+    <br /><br />
+    <input type="submit" name="name" value="Snimi" class="btn btn-success" />
+</form>
+

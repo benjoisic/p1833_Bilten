@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Prikazi";
+}
+@using Bilten.Web.ViewModels.Mjere;
+@model MjerePrikaziVM
+
+<br />
+<h3>Prikaz mjera za kategoriju <b>@Model.NazivKategorije</b></h3>
+<br />  
+<hr />
+<input type="text" name="name" value="@Model.KategorijeId" hidden />
+<table class="table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>Opis</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.OpisMjere</td>
+                <td>
+                    <a href="/Mjere/Uredi?=@x.MjereId">Uredi</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
