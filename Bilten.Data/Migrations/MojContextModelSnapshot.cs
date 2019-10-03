@@ -19,6 +19,66 @@ namespace Bilten.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Bilten.Data.Models.Dogadjaj", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("DatumDogadjaja");
+
+                    b.Property<DateTime?>("DatumPrijave");
+
+                    b.Property<int>("KategorijeId");
+
+                    b.Property<string>("MjestoDogadjaja");
+
+                    b.Property<bool?>("Odabran");
+
+                    b.Property<string>("Opis");
+
+                    b.Property<int>("OrganizacionaJedinicaId");
+
+                    b.Property<int>("PodorganizacionaJedinicaId");
+
+                    b.Property<string>("Prijavitelj");
+
+                    b.Property<int>("VrsteId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("KategorijeId");
+
+                    b.HasIndex("OrganizacionaJedinicaId");
+
+                    b.HasIndex("PodorganizacionaJedinicaId");
+
+                    b.HasIndex("VrsteId");
+
+                    b.ToTable("Dogadjaj");
+                });
+
+            modelBuilder.Entity("Bilten.Data.Models.DogadjajiMjere", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DogadjajId");
+
+                    b.Property<bool>("MjeraPoduzeta");
+
+                    b.Property<int>("MjereId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DogadjajId");
+
+                    b.HasIndex("MjereId");
+
+                    b.ToTable("DogadjajiMjere");
+                });
+
             modelBuilder.Entity("Bilten.Data.Models.Kategorije", b =>
                 {
                     b.Property<int>("Id")
@@ -38,17 +98,38 @@ namespace Bilten.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DatumRodjenja");
-
                     b.Property<string>("ImePrezime");
 
-                    b.Property<string>("KorisnickoIme");
+                    b.Property<int>("JMBG");
 
-                    b.Property<string>("Lozinka");
+                    b.Property<int>("KorisnickiNalogId");
+
+                    b.Property<int>("VrstaKorisnikaId");
+
+                    b.Property<string>("email");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("KorisnickiNalogId");
+
+                    b.HasIndex("VrstaKorisnikaId");
+
                     b.ToTable("Korisnici");
+                });
+
+            modelBuilder.Entity("Bilten.Data.Models.KorisnickiNalog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Lozinka");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("KorisnickiNalog");
                 });
 
             modelBuilder.Entity("Bilten.Data.Models.Mjere", b =>
@@ -68,6 +149,49 @@ namespace Bilten.Data.Migrations
                     b.ToTable("Mjere");
                 });
 
+            modelBuilder.Entity("Bilten.Data.Models.OrganizacionaJedinica", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrganizacionaJedinica");
+                });
+
+            modelBuilder.Entity("Bilten.Data.Models.PodorganizacionaJedinica", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv");
+
+                    b.Property<int>("OrganizacionaJedinicaId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrganizacionaJedinicaId");
+
+                    b.ToTable("PodorganizacionaJedinica");
+                });
+
+            modelBuilder.Entity("Bilten.Data.Models.VrstaKorisnika", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naziv");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VrstaKorisnika");
+                });
+
             modelBuilder.Entity("Bilten.Data.Models.Vrste", b =>
                 {
                     b.Property<int>("Id")
@@ -85,11 +209,68 @@ namespace Bilten.Data.Migrations
                     b.ToTable("Vrste");
                 });
 
+            modelBuilder.Entity("Bilten.Data.Models.Dogadjaj", b =>
+                {
+                    b.HasOne("Bilten.Data.Models.Kategorije", "Kategorije")
+                        .WithMany()
+                        .HasForeignKey("KategorijeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Bilten.Data.Models.OrganizacionaJedinica", "OrganizacionaJedinica")
+                        .WithMany()
+                        .HasForeignKey("OrganizacionaJedinicaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Bilten.Data.Models.PodorganizacionaJedinica", "PodorganizacionaJedinica")
+                        .WithMany()
+                        .HasForeignKey("PodorganizacionaJedinicaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Bilten.Data.Models.Vrste", "Vrste")
+                        .WithMany()
+                        .HasForeignKey("VrsteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Bilten.Data.Models.DogadjajiMjere", b =>
+                {
+                    b.HasOne("Bilten.Data.Models.Dogadjaj", "Dogadjaj")
+                        .WithMany()
+                        .HasForeignKey("DogadjajId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Bilten.Data.Models.Mjere", "Mjere")
+                        .WithMany()
+                        .HasForeignKey("MjereId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Bilten.Data.Models.Korisnici", b =>
+                {
+                    b.HasOne("Bilten.Data.Models.KorisnickiNalog", "KorisnickiNalog")
+                        .WithMany()
+                        .HasForeignKey("KorisnickiNalogId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Bilten.Data.Models.VrstaKorisnika", "VrstaKorisnika")
+                        .WithMany()
+                        .HasForeignKey("VrstaKorisnikaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Bilten.Data.Models.Mjere", b =>
                 {
                     b.HasOne("Bilten.Data.Models.Kategorije", "Kategorije")
                         .WithMany()
                         .HasForeignKey("KategorijeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Bilten.Data.Models.PodorganizacionaJedinica", b =>
+                {
+                    b.HasOne("Bilten.Data.Models.OrganizacionaJedinica", "OrganizacionaJedinica")
+                        .WithMany()
+                        .HasForeignKey("OrganizacionaJedinicaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

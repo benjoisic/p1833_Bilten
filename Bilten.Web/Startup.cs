@@ -26,6 +26,7 @@ namespace Bilten.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<MojContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("cs1")));
 
@@ -57,6 +58,7 @@ namespace Bilten.Web
                 app.UseHsts();
             }
 
+
             // IMPORTANT: This session call MUST go before UseMvc()
             app.UseSession();
 
@@ -67,8 +69,14 @@ namespace Bilten.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Autentifikacija}/{action=Index}/{id?}");
+
             });
         }
     }

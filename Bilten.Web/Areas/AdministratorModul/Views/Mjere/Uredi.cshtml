@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Uredi";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.Mjere;
+@model MjereDodajVM
+
+<h3>Uređivanje mjere "<b>@Model.OpisMjere</b>"</h3>
+<hr />
+
+<form action="/AdministratorModul/Mjere/SnimiPromjene">
+    <input type="text" name="mjereId" value="@Model.MjereId" hidden />
+    <input type="text" name="kategorijeId" value="@Model.KategorijeId" hidden />
+    <label>Naziv:</label>
+    <input type="text" class="form-control col-lg-6" name="opisMjere" value="@Model.OpisMjere" />
+    <br />
+    <br />
+    <input type="submit" name="name" value="Snimi" class="btn btn-danger" />
+</form>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul/Mjere/Prikazi?=@Model.KategorijeId"><< vrati na mjere</a>
+<br />
+<br />

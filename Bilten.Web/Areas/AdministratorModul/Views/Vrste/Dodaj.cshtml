@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.Vrste;
+@model VrsteDodajVM
+
+<h3>Dodavanje nove vrste za kategoriju "<b>@Model.NazivKategorije</b>"</h3>
+<hr />
+
+<form action="/AdministratorModul/Vrste/Snimi" >
+    <input type="text"  name="kategorijeId" value="@Model.KategorijeId" hidden/>
+
+    <label>Naziv:</label>
+    <input type="text" class="form-control col-lg-6" name="nazivVrste" />
+    <br />
+    <br />
+    <input type="submit" name="name" value="Snimi" class="btn btn-success" />
+</form>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul/Vrste/Index"><< vrati na Vrste</a>

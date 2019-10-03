@@ -11,14 +11,14 @@ namespace Bilten.Web.Helper
     {
         private const string LogiraniKorisnik = "logirani_korisnik";
 
-        public static void SetLogiraniKorisnik(this HttpContext context, Korisnici korisnik, bool snimiUCookie = false)
+        public static void SetLogiraniKorisnik(this HttpContext context, KorisnickiNalog korisnik, bool snimiUCookie = false)
         {
             context.Session.Set(LogiraniKorisnik, korisnik);
         }
 
-        public static Korisnici GetLogiraniKorisnik(this HttpContext context)
+        public static KorisnickiNalog GetLogiraniKorisnik(this HttpContext context)
         {
-            Korisnici korisnik = context.Session.Get<Korisnici>(LogiraniKorisnik);
+            KorisnickiNalog korisnik = context.Session.Get<KorisnickiNalog>(LogiraniKorisnik);
             return korisnik;
         }
     }

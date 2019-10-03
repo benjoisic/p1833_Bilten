@@ -1,10 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<br /><br />
+﻿
 
-<div><a href="/Kategorije/Index" class="btn btn-default">Kategorije</a></div>
-<br />
-<div><a href="/Vrste/Index" class="btn btn-default">Vrste</a></div>
-<br />
-<div><a href="/Mjere/Index" class="btn btn-default">Mjere</a></div>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<a asp-area="AdministratorModul" asp-controller="Home" asp-action="Index">Idi na AdministratorModul</a> <br />
+@*<a asp-area="StudentModul" asp-controller="Home" asp-action="Index">Idi na StudentModul</a>*@

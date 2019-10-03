@@ -2,9 +2,7 @@
 @using Bilten.Data.Models
 @using Bilten.Web.Helper
 
-@{ 
-    Korisnici username = Context.GetLogiraniKorisnik();
-}
+
 
 <!DOCTYPE html>
 <html>
@@ -39,7 +37,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Autentifikacija" asp-action="Logout">@(username?.KorisnickoIme) - Logout</a></li>
                 </ul>
             </div>
         </div>

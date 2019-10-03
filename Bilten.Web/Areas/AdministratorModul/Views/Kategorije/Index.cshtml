@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.Kategorije;
+@model KategorijeIndexVM
+
+<h3>Kategorije</h3>
+<hr />
+<table class="table table-bordered table-condensed table-hover" style="width:600px;">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>
+                    <a href="/AdministratorModul/Kategorije/Uredi?=@x.KategorijeId" class="btn-sm btn-warning" style="color:white;">Uredi</a>
+                    <a href="/AdministratorModul/Kategorije/Obrisi?=@x.KategorijeId"><i class="fa fa-fw fa-close fa-1x text-danger"></i></a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<a href="/AdministratorModul/Kategorije/Dodaj" class="btn btn-info">Dodaj</a>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul/"><< vrati na Početnu</a>
+<br />
+<br />

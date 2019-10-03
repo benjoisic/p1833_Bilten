@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.PodorganizacionaJedinica;
+@model PodorganizacionaJedinicaIndexVM
+
+<h3>Podorganizacione jedinice</h3>
+<hr />
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th style="width: 200px;">Naziv</th>
+            <th style="width: 50px;">Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.PodorganizacionaJedinica</td>
+                <td style="width: 200px;">
+                    <a href="/AdministratorModul/PodorganizacionaJedinica/Detalji?=@x.PodorganizacionaJedinicaID" class="btn-sm btn-primary" style="margin-left:10px;">Detalji</a>
+                    <a href="/AdministratorModul/PodorganizacionaJedinica/Uredi?=@x.PodorganizacionaJedinicaID" class="btn-sm btn-warning" style="margin-left:10px; color:white;">Uredi  </a>  
+                    <a href="/AdministratorModul/PodorganizacionaJedinica/Obrisi?=@x.PodorganizacionaJedinicaID" style="margin-left:10px;"><i class="fa fa-fw fa-close fa-1x text-danger"></i></a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<br />
+<a href="/AdministratorModul/PodorganizacionaJedinica/Dodaj" class="btn btn-info">Dodaj</a>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul/"><< vrati na Početnu</a>

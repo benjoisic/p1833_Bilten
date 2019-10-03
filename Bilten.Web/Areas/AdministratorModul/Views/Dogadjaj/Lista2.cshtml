@@ -1,0 +1,63 @@
+﻿@using Bilten.Data.Models;
+@model List<Dogadjaj>
+
+@{
+    ViewData["Title"] = "Lista2";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+<div>
+    <h2 style="display:inline-block">Svi prijavljeni događaji</h2><a href="/AdministratorModul/Dogadjaj/Index" class="btn btn-success" style="float:right; margin-right:60px;">Dodaj novi</a>
+    <a href="/AdministratorModul" class="btn btn-primary" style="float:right;margin-right:10px"><i class="fa fa-backward"></i></a>
+</div>
+<hr />
+@using (Html.BeginForm())
+{
+    <div class="input-group">
+        @*Pretraga: @Html.TextBox("SearchString", "", new { placeholder = "po vrsti ili mjestu" })*@
+        <span class="input-group-append">
+            <input class="form-control" type="text" placeholder="Pretraga po vrsti ili mjestu..." name="SearchString">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+}
+
+<br />
+<table class="table table-sm table-bordered" style="width:95%">
+    <thead>
+        <tr>
+            <th>Kategorija</th>
+            <th>@Html.ActionLink("Vrste", "Lista2", new { sortOrder = ViewBag.Vrste })</th>
+            <th>@Html.ActionLink("Mjesto", "Lista2", new { sortOrder = ViewBag.Mjesto })</th>
+            <th>Org. Jedinica</th>
+            <th>@Html.ActionLink("Datum prijave", "Lista2", new { sortOrder = ViewBag.DatumPrijave })</th>
+            <th>Prijavitelj</th>
+            <th >Opis</th>
+            <th width="10%">Akcija</th>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.Kategorije.Naziv</td>
+                    <td>@x.Vrste.Naziv</td>
+                    <td>@x.MjestoDogadjaja</td>
+                    <td>@x.OrganizacionaJedinica.Naziv</td>
+                    <td>@x.DatumPrijave</td>
+                    <td>@x.Prijavitelj</td>
+                    <td maxlength="20">@x.Opis</td>
+                    <td>
+                        <a href="/AdministratorModul/Dogadjaj/Uredi?=@x.Id" title="Uredi"><i class="fa fa-fw fa-edit"> </i></a>
+                        <a href="/AdministratorModul/Dogadjaj/Detalji?=@x.Id" title="Detalji"><i class="fa fa-fw fa-book"> </i> </a>
+                        <a href="/AdministratorModul/Dogadjaj/Obrisi?=@x.Id" title="Obrisi"><i class="fa fa-fw fa-close text-danger"> </i> </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<br />
+<br />

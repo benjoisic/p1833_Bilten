@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.Korisnici;
+@model KorisniciDodajVM
+
+<h4>Dodaj novog korisnika</h4>
+<hr />
+
+<form action="/AdministratorModul/Korisnici/Snimi" style="width:60%">
+
+    <label>Ime i prezime:</label>
+    <input type="text" class="form-control" name="imeiprezime" />
+    <br />
+
+    <label>JMBG:</label>
+    <input type="text" class="form-control" name="jmbg" />
+    <br />
+
+    <label>E-mail:</label>
+    <input type="text" class="form-control" name="email" />
+    <br />
+
+    <label>Odaberi vrstu:</label>
+    <select name="vrstaZaposlenikaId" class="form-control">
+        @foreach (var x in Model.vrsteZaposlenika)
+        {
+            <option value="@x.Value">@x.Text</option>
+        }
+    </select>
+    <br />
+    <label>Username:</label>
+    <input type="text" class="form-control" name="username" />
+    <br />
+
+    <label>Password:</label>
+    <input type="text" class="form-control" name="password" />
+    <br />
+
+
+    <input type="submit" class="btn btn-success" value="Snimi" />
+
+</form>
+<br />

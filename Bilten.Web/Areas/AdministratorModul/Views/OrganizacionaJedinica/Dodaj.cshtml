@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.OrganizacionaJedinica;
+@model OrganizacionaJedinicaDodajVM
+
+<h3>Dodaj novu organizacionu jedinicu</h3>
+<hr />
+<form action="/AdministratorModul/OrganizacionaJedinica/Snimi">
+    <label>Naziv:</label>
+    <input type="text" class="form-control col-lg-6" name="Naziv" />
+    <br /><br />
+    <input type="submit" value="Snimi" class="btn btn-success" />
+</form>
+<hr />
+<a href="/AdministratorModul/OrganizacionaJedinica"><< vrati na org. jedinice</a>
+<br />
+<br />

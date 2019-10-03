@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Detalji";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.PodorganizacionaJedinica;
+@model PodorganizacionaJedinicaDetaljiVM
+
+<h3>Podorganizaciona jedinica "<b>@Model.PodOrgNaziv</b>"</h3>
+<hr />
+
+<label>Naziv organizacione jedinice:</label>
+<input type="text" class="form-control" style="width:200px" value="@Model.OrganizacionaJedinica" readonly/>
+<br />
+<label>Naziv podorganizacione jedinice:</label>
+<input type="text" class="form-control" style="width:200px;"   value="@Model.PodOrgNaziv" readonly/>
+<br />
+<br />
+      <hr />
+<a href="/AdministratorModul/PodorganizacionaJedinica/Index"><< vrati na Podorganizacione jedinice</a>

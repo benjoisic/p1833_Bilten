@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Uredi";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.Kategorije;
+@model KategorijeDodajVM
+
+<h3>Uredi kategoriju</h3>
+<hr />
+<form action="/Kategorije/SnimiPromjene">
+    <label>Naziv:</label>
+    <input type="text"  class="form-control col-lg-6" name="naziv" value="@Model.Naziv" />
+    <input type="text"   name="KategorijeId" value="@Model.KategorijeID" hidden />
+    <br /><br />
+    <input type="submit" name="name" value="Snimi" class="btn btn-success" />
+</form>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul/Kategorije"><< vrati na Kategorije</a>

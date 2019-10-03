@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.PodorganizacionaJedinica;
+@model PodorganizacionaJedinicaDodajVM
+
+<h3>Dodaj novu podorganizacionu jedinicu</h3>
+<hr />
+<form action="/AdministratorModul/PodorganizacionaJedinica/Snimi">
+
+    <label>Odaberi organizacion jedinicu:</label>
+    <select name="orgJedId" class="form-control" style="width:300px">
+        @foreach (var x in Model.orgJedinice)
+        {
+            <option value="@x.Value">@x.Text</option>
+        }
+    </select>
+    <br />
+
+    <label>Naziv podorganizacione jedinice:</label>
+    <input type="text" class="form-control" style="width:300px" name="podOrgNaziv" />
+    <br />
+    <br />
+
+    <input type="submit" value="Snimi" />
+</form>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul/PodorganizacionaJedinica/Index"><< vrati na Podorganizacione jedinice</a>
+

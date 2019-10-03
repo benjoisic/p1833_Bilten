@@ -1,0 +1,184 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Bilten.Data.Models
+@using Bilten.Web.Helper
+
+@{
+    KorisnickiNalog korisnik = Context.GetLogiraniKorisnik();
+    int idKorisnika = Context.GetLogiraniKorisnik().Id;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Bilten MUP HNK</title>
+    <!-- Bootstrap core CSS-->
+    @*<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="~/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    @*<link href="ven/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">*@
+    <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+            asp-fallback-test="window.jQuery"
+            crossorigin="anonymous"
+            integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+    </script>
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+<body class="fixed-nav sticky-footer bg-mup" id="page-top">
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <img src="http://www.muphnk.ba/sites/all/themes/muphnk/slike/ulaz-grb.fw.png" style="width:33px; margin-right:5px;" alt="Alternate Text" />
+        <a class="navbar-brand" href="/OperaterModul"><h2>Bilten MUP HNK</h2></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Početna">
+                    <a class="nav-link" href="/OperaterModul/Home/Index">
+                        <i class="fa fa-fw fa-dashboard"></i>
+                        <span class="nav-link-text">Početna</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Događaji">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+                        <i class="fa fa-fw fa-sitemap"></i>
+                        <span class="nav-link-text">Dogadjaji</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseMulti">
+                        <li>
+                            <a href="/OperaterModul/Dogadjaj/Lista2">Prikazi dogadjaje</a>
+                        </li>
+                        <li>
+                            <a href="/OperaterModul/Dogadjaj/Index">Dodaj novi dogadjaj</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Kategorije">
+                    <a class="nav-link" href="/OperaterModul/Kategorije/Index">
+                        <i class="fa fa-fw fa-address-book"></i>
+                        <span class="nav-link-text">Kategorije</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Vrste">
+                    <a class="nav-link" href="/OperaterModul/Vrste/Index">
+                        <i class="fa fa-fw fa-ticket"></i>
+                        <span class="nav-link-text">Vrste</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Mjere">
+                    <a class="nav-link" href="/OperaterModul/Mjere/Index">
+                        <i class="fa fa-fw fa-warning"></i>
+                        <span class="nav-link-text">Mjere</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Org. jedinice">
+                    <a class="nav-link" href="/OperaterModul/OrgJed/Index">
+                        <i class="fa fa-fw fa-shield"></i>
+                        <span class="nav-link-text">Org. jedinice</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Podorg. jedinice">
+                    <a class="nav-link" href="/OperaterModul/PodOrgJedinice/Index">
+                        <i class="fa fa-fw fa-star-half-empty"></i>
+                        <span class="nav-link-text">Podorg. jedinice</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+                    <a class="nav-link" href="http://www.muphnk.ba/">
+                        <i class="fa fa-fw fa-link"></i>
+                        <span class="nav-link-text">Web stranica</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="/OperaterModul/Korisnik/Index?=@idKorisnika"> @*Treba dodati index za korisnike*@
+                        <i class="fa"></i><h4 style="display:inline">Dobro došli  @korisnik.Username</h4>
+                    </a>
+
+
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Autentifikacija/Logout">
+                        <i class="fa fa-fw fa-sign-out"></i><h4 style="display:inline">Logout</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            @RenderBody()
+
+        </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                <small>Copyright © Bilten MUP 2019</small>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/vendor/jquery-easing/jquery.easing.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/js/sb-admin.js"></script>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

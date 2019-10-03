@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.Korisnici;
+@model KorisniciIndexVM
+
+<h4>Svi korisnici</h4>
+<hr />
+<table class="table table-bordered table-hover" style="width:800px;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Ime i prezime</th>
+            <th>JMBG</th>
+            <th>Email</th>
+            <th>username</th>
+            <th>Vrsta</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.KorisnikId</td>
+                <td>@x.ImePrezime</td>
+                <td>@x.JMBG</td>
+                <td>@x.email</td>
+                <td>@x.username</td>
+                <td>@x.vrstaZaposlenika</td>
+                <td>
+                    <a href="/AdministratorModul/Korisnici/UrediKorisnika?=@x.KorisnikId" title="Uredi"><i class="fa fa-fw fa-edit"> </i></a>
+                    <a href="/AdministratorModul/Korisnici/Detalji?=@x.KorisnikId" title="Detalji"><i class="fa fa-fw fa-book"> </i></a>
+                    <a href="/AdministratorModul/Korisnici/Obrisi?=@x.KorisnikId" title="Obrisi"><i class="fa fa-fw fa-close text-danger"> </i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a href="/AdministratorModul/Korisnici/Dodaj" class="btn btn-info">Dodaj novog korisnika</a>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul"><< vrati na Početnu</a>

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.DogadjajiMjere;
+@model DogadjajiMjereIndexVM
+
+<input type="hidden" name="name" value="@Model.DogadjajID" />
+<h6></h6>
+<table class="table table-bordered" >
+
+    <thead>
+        <tr>
+            <th>Poduzete mjere</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td><i class="fa fa-fw fa-check"></i>@x.Mjera</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

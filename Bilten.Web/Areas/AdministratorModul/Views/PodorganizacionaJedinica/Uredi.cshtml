@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Uredi";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.PodorganizacionaJedinica;
+@model PodorganizacionaJedinicaDodajVM
+
+<h3>Uredi podorganizacionu jedinicu</h3>
+<hr />
+<form action="/AdministratorModul/PodorganizacionaJedinica/SnimiPromjene">
+    <label>Naziv:</label>
+    <input type="text" class="form-control" name="Naziv" value="@Model.Naziv" />
+    <input type="text" name="OrganizacionaJedinicaID" value="@Model.OrganizacionaJedinicaID" hidden />
+    <input type="text" name="PodorganizacionaJedinicaID" value="@Model.PodorganizacionaJedinicaID" hidden />
+    <br /><br />
+    <input type="submit" value="Snimi" class="btn btn-success" />
+</form>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul/PodorganizacionaJedinica/Index"><< vrati na Podorganizacione jedinice</a>

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "UrediKorisnika";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.Korisnici;
+@model KorisniciUrediVM
+
+<h4>Uredi profil <b>"@Model.username"</b></h4>
+<hr />
+
+<form action="/AdministratorModul/Korisnici/SnimiPromjene" style="width:50%;">
+    <input type="text" name="korisnikId" value="@Model.KorisnikId" hidden />
+    <input type="text" name="nalogId" value="@Model.KorisnickiNalogId" hidden />
+
+    <label>Ime i Prezime:</label>
+    <input type="text" name="imeiprezime" class="form-control" value="@Model.ImePrezime" />
+    <br />
+
+    <label>JMBG:</label>
+    <input type="text" name="jmbg" class="form-control" value="@Model.JMBG" />
+    <br />
+
+    <label>E-mail:</label>
+    <input type="text" name="email" class="form-control" value="@Model.email" />
+    <br />
+
+    <label>username:</label>
+    <input type="text" name="username" class="form-control" value="@Model.username" />
+    <br />
+
+    <a href="/AdministratorModul/Korisnici/PromjeniPassword?=@Model.KorisnikId">Promjeni password</a>
+
+    <br /><br />
+    <input type="submit" value="Snimi" class="btn btn-success" />
+</form>
+<br />
+<hr />
+<a href="/AdministratorModul/Korisnici/Index">
+    <i class=" fa fa-fw fa-long-arrow-left fa-2x text-secondary"></i>
+</a>
+<br />
+<br />

@@ -24,27 +24,63 @@ namespace Bilten.Web.Controllers
         {
             return View(new LoginVM()
             {
-                ZapamtiPassword = true
+                ZapamtiPassword = false
             });
         }
 
         public IActionResult Login(LoginVM input)
         {
-            Korisnici korisnik = _context.Korisnici.SingleOrDefault(x => x.KorisnickoIme == input.username && x.Lozinka == input.password);
+            KorisnickiNalog korisnik = _context.KorisnickiNalog
+                .SingleOrDefault(x => x.Username == input.username && x.Lozinka == input.password);
 
-            if(korisnik == null)
+            if (korisnik == null)
             {
                 TempData["error_poruka"] = "pogrešan username ili password";
                 return View("Index", input);
             }
 
-            HttpContext.SetLogiraniKorisnik(korisnik);
-            
+            HttpContext.SetLogiraniKorisnik(korisnik, input.ZapamtiPassword);
+
+            bool isAdministrator = false, isOperater = false, isKontrolor = false;
+
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+
+            if(k.VrstaKorisnikaId == 1)
+            {
+                isAdministrator = true;
+            }
+            if(k.VrstaKorisnikaId == 2)
+            {
+                isOperater = true;
+            }
+            if(k.VrstaKorisnikaId == 3)
+            {
+                isKontrolor = true;
+            }
+
+            if(isAdministrator)
+            {
+                return RedirectToAction("Index", "Home", new { area = "AdministratorModul" });
+            }
+
+            if (isOperater)
+            {
+                return RedirectToAction("Index", "Home", new { area = "OperaterModul" });
+            }
+
+            if (isKontrolor)
+            {
+                return RedirectToAction("Index", "Home", new { area = "KontrolorModul" });
+            }
+
+
+
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Logout()
         {
+            HttpContext.Session.Clear();
             return RedirectToAction("Index");
         }
     }

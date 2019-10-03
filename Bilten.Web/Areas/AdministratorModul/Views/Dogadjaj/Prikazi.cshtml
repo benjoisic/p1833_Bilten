@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Prikazi";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.Dogadjaj;
+@model DogadjajPrikaziVM
+
+<h3>Dogadjaji za kategoriju "<b>@Model.Kategorija</b>"</h3>
+<hr />
+
+<table class="table table-sm table-bordered table-hover ">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Org. jedinica</th>
+            <th>Podorg. jedinica</th>
+            <th>Vrsta</th>
+            <th>Datum događaja</th>
+            <th>Mjesto događaja</th>
+            <th>Datum prijave</th>
+            <th>Prijavitelj</th>
+            <th>Opis</th>
+            <th>Mjere</th>
+            <th>akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.DogadjajID</td>
+                <td>@x.OrganizacioneJedinice</td>
+                <td>@x.PodorganizacioneJedinice</td>
+                <td>@x.Vrste</td>
+                <td>@x.DatumDogadjaja</td>
+                <td>@x.MjestoDogadjaja</td>
+                <td>@x.DatumPrijave</td>
+                <td>@x.Prijavitelj</td>
+                <td>@x.Opis</td>
+                <td>
+                    @foreach (var z in x.mjere)
+                    {
+                        <span>@z @(",")<br /></span>
+                    }
+                </td>
+                <td>
+                    <a href="/AdministratorModul/Dogadjaj/Detalji?=@x.DogadjajID">Detalji</a>|
+                    <a href="/AdministratorModul/Dogadjaj/Uredi?=@x.DogadjajID">Uredi</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a href="/AdministratorModul/Dogadjaj/Dodaj?=@Model.KategorijaID" class="btn btn-info">Dodaj novi događaj</a>
+<br />
+<br />
+<hr />
+<a href="/AdministratorModul/Dogadjaj/Index"><< vrati na kategorije</a>
+<br /><br />

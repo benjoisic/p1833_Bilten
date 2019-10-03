@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.DogadjajiMjere;
+@model DogadjajiMjereDodajVM
+
+<h2>Dodaj mjeru</h2>
+
+<form action="/AdministratorModul/DogadjajiMjere/Snimi">
+    <input type="text" name="dogadjajId" value="@Model.DogadjajID" hidden />
+
+    <label>Mjere</label>
+    <select name="mjeraId">
+        @foreach (var x in Model.mjere)
+        {
+            <option value="@x.Value">@x.Text</option>
+        }
+    </select>
+    <br />
+    <label>Mjera poduzeta</label>
+    <input name="poduzeta" value="@Model.Poduzeta" />
+    <br />
+    <input type="submit" name="name" value="Dodaj mjeru" class="btn btn-danger" />
+</form>

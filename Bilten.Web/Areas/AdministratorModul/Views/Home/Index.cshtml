@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+<html>
+<head>
+    <link href="~/css/MyAdminCSS.css" rel="stylesheet">
+</head>
+<body>
+    <br />
+    <h3 style="text-align:center; color:#29456d">Policijski bilten (Administrator)</h3>
+    <hr />
+    <br />
+
+    <span>
+        <a class="myButton" href="/AdministratorModul/Dogadjaj/Index" style="margin-right:10px;  width:250px; text-align:center;">
+            Događaji
+        </a>
+
+        <a class="myButton" href="/AdministratorModul/Dogadjaj/Lista2" style="margin-right:10px;  text-align:center;">
+            Pregled događaja
+        </a>
+    </span>
+    <hr />
+    <br />
+    <span>
+        <a class="myButton2" href="/AdministratorModul/Kategorije" style="margin-right:10px;  width:250px; text-align:center;">
+            <i class="fa fa-fw fa-connectdevelop"></i>
+            Kategorije
+        </a>
+
+        <a class="myButton2" href="/AdministratorModul/Vrste " style="margin-right:10px;  width:250px; text-align:center;">
+            <i class="fa fa-fw fa-list-ul"></i>
+            Vrste
+        </a>
+
+        <a class="myButton2" href="/AdministratorModul/Mjere" style="margin-right:10px;  width:250px; text-align:center;">
+            <i class="fa fa-fw fa-gavel"></i>
+            Mjere
+        </a>
+    </span>
+    <br />
+    <br />
+    <a class="myButton2" href="/AdministratorModul/OrganizacionaJedinica" style="margin-right:10px;  text-align:center;">
+        <i class="fa fa-fw fa-group"></i>
+        Org. jedinice
+    </a>
+
+    <a class="myButton2" href="/AdministratorModul/PodorganizacionaJedinica " style="margin-right:10px;  text-align:center;">
+        <i class="fa fa-fw fa-user"></i>
+        Podorg. jedinice
+    </a>
+
+    <a class="myButton2" href="/AdministratorModul/Korisnici " style="margin-right:10px;  width:250px; text-align:center;">
+        <i class="fa fa-fw fa-user-circle"></i>
+        Korisnici
+    </a>
+</body>
+</html>

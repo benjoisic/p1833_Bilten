@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+}
+@using Bilten.Web.Areas.AdministratorModul.ViewModels.OrganizacionaJedinica;
+@model OrganizacionaJedinicaIndexVM
+<h3>Organizacione jedinice</h3>
+<hr />
+<table class="table table-hover table-condensed table-bordered">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+                <td>
+                    <a href="/AdministratorModul/OrganizacionaJedinica/Uredi?=@x.OrganizacionaJedinicaID" class="btn-sm btn-warning" style="margin-left:10px; color:white;">Uredi</a>
+                    <a href="/AdministratorModul/OrganizacionaJedinica/Obrisi?=@x.OrganizacionaJedinicaID"><i class="fa fa-fw fa-close fa-1x text-danger"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a href="/AdministratorModul/OrganizacionaJedinica/Dodaj" class="btn btn-info">Dodaj</a>
+<hr />
+<a href="/AdministratorModul/"><< vrati na Početnu</a>
+<br />
+<br />
