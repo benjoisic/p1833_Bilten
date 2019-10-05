@@ -6,11 +6,12 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Korisnici;
 @model KorisniciUrediVM
 
-<div style="display:inline-flex;">
-    <h4 style="padding-right:15px;">Detalji o korisniku <b>"@Model.username"   </b></h4>
-    <a href="/AdministratorModul/Korisnici/UrediKorisnika?=@Model.KorisnikId" class="btn btn-primary">   Uredi profil</a>
+<div>
+    <h2 style="display:inline-block">Detalji o korisniku <b>"@Model.username"</b></h2><a href="/AdministratorModul/Korisnici/UrediKorisnika?=@Model.KorisnikId" class="btn btn-warning" style="float:right; margin-right:30px;">Uredi profil</a>
+    <a href="/AdministratorModul/Korisnici" class="btn btn-primary" style="float:right;margin-right:20px"><i class="fa fa-backward"></i></a>
+    
+    <hr />
 </div>
-<hr />
 
 <form style="width:50%;">
     <label>Ime i prezime:</label>
@@ -48,13 +49,9 @@
     <br />
 
 </form>
-<br />
+<br /><br />
 <hr />
-<a href="/AdministratorModul/Korisnici/Index">
-    <i class=" fa fa-fw fa-long-arrow-left fa-2x text-secondary"></i>
-</a>
-<br />
-<br />
+
 <script>
     //$(".showpassword").click(function (event) {
     //    $("#pokaziPass").html(event);

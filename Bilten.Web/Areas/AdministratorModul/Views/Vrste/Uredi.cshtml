@@ -6,9 +6,13 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Vrste;
 @model VrsteDodajVM
 
-<h3>Uređivanje vrste "<b>@Model.Naziv</b>"</h3>
-<hr />
 
+<div>
+    <h2 style="display:inline-block">Uređivanje vrste "<b>@Model.Naziv</b>"</h2>
+    <a href="/AdministratorModul/Vrste/Odaberi?=@Model.KategorijeId" class="btn btn-primary " style="float:right;margin-right:20px"><i class="fa fa-backward"></i></a>
+
+    <hr />
+</div>
 <form action="/AdministratorModul/Vrste/SnimiPromjene">
     <input type="text" name="vrsteId" value="@Model.VrsteId" hidden />
     <input type="text" name="kategorijeId" value="@Model.KategorijeId" hidden />
@@ -16,9 +20,8 @@
     <input type="text" class="form-control col-lg-6" name="nazivVrste" value="@Model.Naziv" />
     <br />
     <br />
-    <input type="submit" name="name" value="Snimi" class="btn btn-success" />
+    <input type="submit" name="name" value="Snimi" class="btn btn-danger" />
 </form>
 <br />
 <br />
 <hr />
-<a href="/AdministratorModul/Vrste/Index"><< vrati na Vrste</a>

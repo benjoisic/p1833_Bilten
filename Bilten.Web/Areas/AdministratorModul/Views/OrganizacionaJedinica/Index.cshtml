@@ -5,9 +5,14 @@
 }
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.OrganizacionaJedinica;
 @model OrganizacionaJedinicaIndexVM
-<h3>Organizacione jedinice</h3>
-<hr />
-<table class="table table-hover table-condensed table-bordered">
+
+<div>
+    <h2 style="display:inline-block">Organizacione jedinice</h2>
+    <a href="/AdministratorModul" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
+
+<table class="table table-bordered" style="width:40%">
     <thead>
         <tr>
             <th>Naziv</th>
@@ -19,8 +24,8 @@
         {
             <tr>
                 <td>@x.Naziv</td>
-                <td>
-                    <a href="/AdministratorModul/OrganizacionaJedinica/Uredi?=@x.OrganizacionaJedinicaID" class="btn-sm btn-warning" style="margin-left:10px; color:white;">Uredi</a>
+                <td style="width:120px;">
+                    <a href="/AdministratorModul/OrganizacionaJedinica/Uredi?=@x.OrganizacionaJedinicaID" class="btn-sm btn-warning" style=" color:white;">Uredi</a>
                     <a href="/AdministratorModul/OrganizacionaJedinica/Obrisi?=@x.OrganizacionaJedinicaID"><i class="fa fa-fw fa-close fa-1x text-danger"></i></a>
                 </td>
             </tr>
@@ -28,8 +33,5 @@
     </tbody>
 </table>
 <br />
-<a href="/AdministratorModul/OrganizacionaJedinica/Dodaj" class="btn btn-info">Dodaj</a>
+<a href="/AdministratorModul/OrganizacionaJedinica/Dodaj" class="btn btn-success">Dodaj</a>
 <hr />
-<a href="/AdministratorModul/"><< vrati na Početnu</a>
-<br />
-<br />

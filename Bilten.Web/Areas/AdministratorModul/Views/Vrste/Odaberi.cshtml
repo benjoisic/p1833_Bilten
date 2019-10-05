@@ -6,9 +6,13 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Vrste;
 @model VrsteOdaberiVM
 
-<h3>Prikaz svih vrsta za kategoriju "<b>@Model.NazivKategorije</b>"</h3>
-<hr />
-<table class="table table-hover table-bordered " style="width:70%">
+<div>
+    <h2 style="display:inline-block">Prikaz svih vrsta za kategoriju "<b>@Model.NazivKategorije</b>"</h2>
+    <a href="/AdministratorModul/Vrste" class="btn btn-primary " style="float:right;margin-right:20px"><i class="fa fa-backward"></i></a>
+
+    <hr />
+</div>
+<table class="table table-hover table-bordered " style="width:50%">
     <thead>
         <tr>
             <th>Naziv</th>
@@ -20,7 +24,7 @@
         {
             <tr>
                 <td>@x.Naziv</td>
-                <td>
+                <td style="width:150px">
                     <a href="/AdministratorModul/Vrste/Uredi?=@x.VrsteId" class="btn-sm btn-warning" style="color:white; margin-right:20px;">Uredi</a>
                     <a href="/AdministratorModul/Vrste/Obrisi?=@x.VrsteId"><i class="fa fa-fw fa-close fa-1x text-danger"></i></a>
                 </td>
@@ -30,10 +34,8 @@
     </tbody>
 </table>
 <br />
-<a href="/AdministratorModul/Vrste/Dodaj?=@Model.KategorijeId" class="btn btn-info">Dodaj vrstu</a>
+<a href="/AdministratorModul/Vrste/Dodaj?=@Model.KategorijeId" class="btn btn-success">Dodaj vrstu</a>
 <br /><br />
       <hr />
-<a href="/AdministratorModul/Vrste/Index"><< vrati na Vrste</a>
 
-<br />
 <br />

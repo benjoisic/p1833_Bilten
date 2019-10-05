@@ -6,9 +6,13 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Dogadjaj;
 @model DogadjajDetaljiVM
 
-<h5>Detalji</h5>
-<hr />
-<br />
+
+<div>
+    <h2 style="display:inline-block">Detalji</h2>
+    <a href="/AdministratorModul/Dogadjaj/Lista2" class="btn btn-primary " style="float:right;margin-right:20px"><i class="fa fa-backward"></i></a>
+
+    <hr />
+</div>
 <form style="width:70%">
     <label><b>Vrsta događaja:</b></label>
     <input type="text" class="form-control" name="name" value="@Model.Vrste" readonly />
@@ -60,15 +64,15 @@
     <textarea class="form-control" readonly>@Model.Opis"</textarea>
     <br />
 
+    <a href="/AdministratorModul/Dogadjaj/Uredi?=@Model.DogadjajID" class="btn btn-success">Dodaj/Izmjeni mjere</a>
+
+    <br />
     <div id="mjereStavke"></div>
     <br />
-    <a href="/AdministratorModul/Dogadjaj/Uredi?=@Model.DogadjajID">Dodaj/Izmjeni mjere</a>
+    <br />
+    <br />
 </form>
-<br />
-<hr />
-<a href="/AdministratorModul/Dogadjaj/Lista2"><< vrati na sve događaje</a>
-<br />
-<br />
+
 
 <script>
       $.get("/AdministratorModul/DogadjajiMjere/Index?=@Model.DogadjajID", function (rezultat, status) {

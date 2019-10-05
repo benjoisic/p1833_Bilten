@@ -6,8 +6,11 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Korisnici;
 @model KorisniciIndexVM
 
-<h4>Svi korisnici</h4>
-<hr />
+<div>
+    <h2 style="display:inline-block">Svi korisnici</h2>
+    <a href="/AdministratorModul" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
 <table class="table table-bordered table-hover" style="width:800px;">
     <thead>
         <tr>
@@ -40,8 +43,6 @@
     </tbody>
 </table>
 <br />
-<a href="/AdministratorModul/Korisnici/Dodaj" class="btn btn-info">Dodaj novog korisnika</a>
+<a href="/AdministratorModul/Korisnici/Dodaj" class="btn btn-success">Dodaj novog korisnika</a>
 <br />
 <br />
-<hr />
-<a href="/AdministratorModul"><< vrati na Početnu</a>

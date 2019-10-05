@@ -22,6 +22,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Index()
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             KorisniciIndexVM model = _context.Korisnici.Select(x => new KorisniciIndexVM
             {
                 Rows = _context.Korisnici.Select(y=> new KorisniciIndexVM.Row
@@ -41,6 +48,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Detalji(int korisnikId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             KorisniciUrediVM model = _context.Korisnici.Where(x => x.Id == korisnikId).Select(y => new KorisniciUrediVM
             {
                 KorisnikId = y.Id,
@@ -58,6 +72,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Dodaj()
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             KorisniciDodajVM model = new KorisniciDodajVM();
 
             model.vrsteZaposlenika = _context.VrstaKorisnika.Select(x => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
@@ -71,6 +92,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Snimi(string imeiprezime, int jmbg, string email, int vrstaZaposlenikaId, string username, string password)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             //imeiprezime = &jmbg = &email = &vrstaZaposlenikaId = 1 & username = &password =
 
             KorisnickiNalog KN = new KorisnickiNalog();
@@ -97,6 +125,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult UrediKorisnika(int korisnikId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             KorisniciUrediVM model = _context.Korisnici.Where(x=>x.Id==korisnikId).Select(y => new KorisniciUrediVM
             {
                     KorisnikId = y.Id,
@@ -115,6 +150,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
         public IActionResult SnimiPromjene(int korisnikId, int nalogId, string imeiprezime, int jmbg, string email, string username)
         //?korisnikId=1&nalogId=1&imeiprezime=Samra+Buri%C4%87&jmbg=2905997&email=samra%40edu.fit.ba&username=samrab
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             Korisnici temp = _context.Korisnici.Where(x => x.Id == korisnikId).FirstOrDefault();
             KorisnickiNalog temp1 = _context.KorisnickiNalog.Where(y => y.Id == nalogId).FirstOrDefault();
 
@@ -139,9 +181,16 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
         
         public IActionResult Obrisi(int korisnikId)
         {
-            Korisnici k = _context.Korisnici.Where(x => x.Id == korisnikId).FirstOrDefault();
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
+            Korisnici k1 = _context.Korisnici.Where(x => x.Id == korisnikId).FirstOrDefault();
 
-            _context.Korisnici.Remove(k);
+            _context.Korisnici.Remove(k1);
             _context.SaveChanges();
 
             return Redirect("/AdministratorModul/Korisnici/Index");

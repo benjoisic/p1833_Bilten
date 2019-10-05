@@ -6,9 +6,13 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Mjere;
 @model MjereDodajVM
 
-<h3>Uređivanje mjere "<b>@Model.OpisMjere</b>"</h3>
-<hr />
 
+<div>
+    <h2 style="display:inline-block">Uređivanje mjere "<b>@Model.OpisMjere</b>"</h2>
+    <a href="/AdministratorModul/Mjere/Prikazi?=@Model.KategorijeId" class="btn btn-primary" style="float:right;margin-right:20px"><i class="fa fa-backward"></i></a>
+
+    <hr />
+</div>
 <form action="/AdministratorModul/Mjere/SnimiPromjene">
     <input type="text" name="mjereId" value="@Model.MjereId" hidden />
     <input type="text" name="kategorijeId" value="@Model.KategorijeId" hidden />
@@ -21,6 +25,5 @@
 <br />
 <br />
 <hr />
-<a href="/AdministratorModul/Mjere/Prikazi?=@Model.KategorijeId"><< vrati na mjere</a>
 <br />
 <br />

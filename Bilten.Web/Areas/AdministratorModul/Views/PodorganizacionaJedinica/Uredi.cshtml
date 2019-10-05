@@ -7,17 +7,18 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.PodorganizacionaJedinica;
 @model PodorganizacionaJedinicaDodajVM
 
-<h3>Uredi podorganizacionu jedinicu</h3>
-<hr />
+<div>
+    <h2 style="display:inline-block;">Uredi podorganizacionu jedinicu</h2>
+    <a href="/AdministratorModul/PodorganizacionaJedinica" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
 <form action="/AdministratorModul/PodorganizacionaJedinica/SnimiPromjene">
     <label>Naziv:</label>
-    <input type="text" class="form-control" name="Naziv" value="@Model.Naziv" />
+    <input type="text" class="form-control" style="width:300px" name="Naziv" value="@Model.Naziv" />
     <input type="text" name="OrganizacionaJedinicaID" value="@Model.OrganizacionaJedinicaID" hidden />
     <input type="text" name="PodorganizacionaJedinicaID" value="@Model.PodorganizacionaJedinicaID" hidden />
     <br /><br />
     <input type="submit" value="Snimi" class="btn btn-success" />
 </form>
 <br />
-<br />
 <hr />
-<a href="/AdministratorModul/PodorganizacionaJedinica/Index"><< vrati na Podorganizacione jedinice</a>

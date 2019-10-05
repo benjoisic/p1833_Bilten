@@ -115,6 +115,14 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 return Redirect("/AdministratorModul/Autentifikacija/Index");
             }
 
+            Dogadjaj temp1 = _context.Dogadjaj.Where(y => y.VrsteId == vrsteId).FirstOrDefault();
+
+            if (temp1 != null)
+            {
+                _context.Dogadjaj.Remove(temp1);
+                _context.SaveChanges();
+            }
+
             Vrste temp = _context.Vrste.Where(x => x.Id == vrsteId).FirstOrDefault();
 
             _context.Vrste.Remove(temp);

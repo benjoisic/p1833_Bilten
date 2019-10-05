@@ -1,18 +1,23 @@
 ﻿
 @{
     ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
 }
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Mjere;
 @model MjereDodajVM
 
-<h2>Dodavanje nove mjere za kategoriju "<b>@Model.NazivKategorije</b></h2>
-<hr />
+<div>
+    <h2 style="display:inline-block">Dodaj novu mjeru za kategoriju "<b>@Model.NazivKategorije</b>"</h2>
+    <a href="/AdministratorModul/Mjere/Prikazi?=@Model.KategorijeId" class="btn btn-primary" style="float:right;margin-right:20px"><i class="fa fa-backward"></i></a>
+
+    <hr />
+</div>
 
 <form action="/AdministratorModul/Mjere/Snimi">
     <input type="text" name="kategorijeId" value="@Model.KategorijeId" hidden />
 
     <label>Opis mjere:</label>
-    <input type="text" name="opisMjere" />
+    <input type="text" class="form-control" style="width:450px;" name="opisMjere" />
     <br />
     <br />
     <input type="submit" name="name" value="Snimi" class="btn btn-danger" />

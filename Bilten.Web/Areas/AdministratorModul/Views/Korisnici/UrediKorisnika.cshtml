@@ -6,9 +6,12 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Korisnici;
 @model KorisniciUrediVM
 
-<h4>Uredi profil <b>"@Model.username"</b></h4>
-<hr />
 
+<div>
+    <h2 style="display:inline-block">Uredi profil <b>"@Model.username"</b></h2>
+    <a href="/AdministratorModul/Korisnici" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
 <form action="/AdministratorModul/Korisnici/SnimiPromjene" style="width:50%;">
     <input type="text" name="korisnikId" value="@Model.KorisnikId" hidden />
     <input type="text" name="nalogId" value="@Model.KorisnickiNalogId" hidden />
@@ -29,15 +32,10 @@
     <input type="text" name="username" class="form-control" value="@Model.username" />
     <br />
 
-    <a href="/AdministratorModul/Korisnici/PromjeniPassword?=@Model.KorisnikId">Promjeni password</a>
 
     <br /><br />
-    <input type="submit" value="Snimi" class="btn btn-success" />
+    <input type="submit" value="Snimi" class="btn btn-danger" />
+    <a href="/AdministratorModul/Korisnici/PromjeniPassword?=@Model.KorisnikId" class="btn btn-primary" style="margin-left:10px;">Promjeni password</a>
 </form>
-<br />
+<br /><br />
 <hr />
-<a href="/AdministratorModul/Korisnici/Index">
-    <i class=" fa fa-fw fa-long-arrow-left fa-2x text-secondary"></i>
-</a>
-<br />
-<br />

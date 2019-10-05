@@ -7,15 +7,16 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.OrganizacionaJedinica;
 @model OrganizacionaJedinicaDodajVM
 
-<h3>Dodaj novu organizacionu jedinicu</h3>
-<hr />
+
+<div>
+    <h2 style="display:inline-block">Dodaj novu organizacionu jedinicu</h2>
+    <a href="/AdministratorModul/OrganizacionaJedinica" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
 <form action="/AdministratorModul/OrganizacionaJedinica/Snimi">
     <label>Naziv:</label>
     <input type="text" class="form-control col-lg-6" name="Naziv" />
     <br /><br />
-    <input type="submit" value="Snimi" class="btn btn-success" />
+    <input type="submit" value="Snimi" class="btn btn-danger" />
 </form>
 <hr />
-<a href="/AdministratorModul/OrganizacionaJedinica"><< vrati na org. jedinice</a>
-<br />
-<br />

@@ -7,8 +7,11 @@
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.PodorganizacionaJedinica;
 @model PodorganizacionaJedinicaDodajVM
 
-<h3>Dodaj novu podorganizacionu jedinicu</h3>
-<hr />
+<div>
+    <h2 style="display:inline-block;">Dodaj novu podorganizacionu jedinicu</h2>
+    <a href="/AdministratorModul/PodorganizacionaJedinica" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
 <form action="/AdministratorModul/PodorganizacionaJedinica/Snimi">
 
     <label>Odaberi organizacion jedinicu:</label>
@@ -25,10 +28,8 @@
     <br />
     <br />
 
-    <input type="submit" value="Snimi" />
+    <input type="submit" value="Snimi" class="btn btn-danger"/>
 </form>
 <br />
 <br />
 <hr />
-<a href="/AdministratorModul/PodorganizacionaJedinica/Index"><< vrati na Podorganizacione jedinice</a>
-
