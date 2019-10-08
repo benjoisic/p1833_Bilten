@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+}
+@using Bilten.Web.Areas.OperaterModul.ViewModels.Korisnik;
+@model KorisnikIndexVM
+
+<div style="display:inline-flex;">
+    <h4 style="padding-right:15px;">Informacije o korisniku <b>"@Model.username"   </b></h4>
+    <a href="/OperaterModul/Korisnik/UrediProfil?=@Model.KorisnikId" class="btn btn-primary">   Uredi profil</a>
+</div>
+<hr />
+
+<form style="width:50%;">
+    <label>Ime i prezime:</label>
+    <input type="text" class="form-control" value="@Model.ImePrezime" readonly />
+    <br />
+
+    <label>JMBG:</label>
+    <input type="text" class="form-control" value="@Model.JMBG" readonly />
+    <br />
+
+    <label>E-mail:</label>
+    <input type="text" class="form-control" value="@Model.email" readonly />
+    <br />
+
+    <label>Vrsta zaposlenika:</label>
+    <input type="text" class="form-control" value="@Model.vrstaZaposlenika" readonly />
+    <br />
+
+
+    <div id="lozinka1">
+        <label>Password:</label>
+        <input type="password" class="form-control" value="@Model.password" readonly />
+    </div>
+
+
+    <a class="showpassword"></a>
+
+
+    <div id="lozinka" style="display:none">
+
+        <label>Password:</label>
+        <input type="text" class="form-control" value="@Model.password" readonly />
+    </div>
+    <br />
+    <a id="btn"><i class=" fa fa-fw fa-eye text-secondary text-secondary"></i></a>
+    <br />
+
+</form>
+<br />
+<hr />
+<a href="/OperaterModul"><< vrati na Početnu</a>
+<br />
+<br />
+<script>
+    //$(".showpassword").click(function (event) {
+    //    $("#pokaziPass").html(event);
+    //});
+
+    $(document).ready(function () {
+        $("#btn").click(function () {
+            $("#lozinka1").toggle();
+            $("#lozinka").toggle();
+        });
+    });
+</script>
