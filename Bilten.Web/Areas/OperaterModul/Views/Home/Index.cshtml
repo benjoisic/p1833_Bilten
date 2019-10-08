@@ -1,0 +1,62 @@
+﻿@using Bilten.Web.Helper
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+    int idKorisnika = Context.GetLogiraniKorisnik().Id;
+}
+<html>
+<head>
+    <link href="~/css/MyAdminCSS.css" rel="stylesheet">
+</head>
+<body style="margin:0 auto;">
+    <br />
+    <h3 style="text-align:center; color:#29456d">Policijski bilten (Modul Operater)</h3>
+    <hr />
+    <br />
+
+    <span>
+        <a class="myButton" href="/OperaterModul/Dogadjaj/Index" style="margin-right:10px;  width:250px; text-align:center;">
+            Novi događaj
+        </a>
+
+        <a class="myButton" href="/OperaterModul/Dogadjaj/Lista2" style="margin-right:10px;  width:250px; text-align:center;">
+            Svi događaji
+        </a>
+    </span>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <span>
+        <a class="myButton1" href="/OperaterModul/Kategorije" style="margin-right:10px;  width:250px; text-align:center;">
+            <i class="fa fa-fw fa-connectdevelop"></i>
+            Kategorije
+        </a>
+
+        <a class="myButton1" href="/OperaterModul/Vrste " style="margin-right:10px;  width:250px; text-align:center;">
+            <i class="fa fa-fw fa-list-ul"></i>
+            Vrste
+        </a>
+
+        <a class="myButton1" href="/OperaterModul/Mjere" style="margin-right:10px;  width:250px; text-align:left;">
+            <i class="fa fa-fw fa-gavel "></i>
+            Mjere
+        </a>
+    </span>
+    <br /><br />
+    <a class="myButton1" href="/OperaterModul/OrgJed" style="margin-right:10px;  text-align:center;">
+        <i class="fa fa-fw fa-group"></i>
+        Org. jedinice
+    </a>
+
+    <a class="myButton1" href="/OperaterModul/PodOrgJedinice " style="margin-right:10px;  text-align:center;">
+        <i class="fa fa-fw fa-user"></i>
+        Podorg. jedinice
+    </a>
+    <a class="myButton1" href="/OperaterModul/Korisnik/Index?=@idKorisnika" style="margin-right:10px;  text-align:center;">
+        <i class="fa fa-fw fa-id-badge "></i>
+        Korisnik
+    </a>
+</body>
+</html>

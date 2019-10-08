@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+}
+@using Bilten.Web.Areas.OperaterModul.ViewModels.Mjere;
+@model MjereIndexVM
+
+<div>
+    <h2 style="display:inline-block">Pregled svih mjera </h2>
+    <a href="/OperaterModul" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
+<table class="table table-bordered " style="width:60%">
+    <thead>
+        <tr>
+            <th>Naziv mjere</th>
+            <th>Naziv kategorije</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.NazivMjere</td>
+                <td>@x.NazivKategorije</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />  <hr />
