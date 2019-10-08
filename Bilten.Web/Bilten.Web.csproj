@@ -8,7 +8,7 @@
     <PackageReference Include="jQuery" Version="3.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
     <PackageReference Include="Rotativa" Version="1.7.3" />
     <PackageReference Include="Rotativa.Core" Version="2.0.2.1" />
     <PackageReference Include="Rotativa.MVC" Version="2.0.3" />
@@ -23,15 +23,6 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Areas\KontrolorModul\Views\Home\Index.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\OperaterModul\Views\DogadjajiMjere\Dodaj.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\OperaterModul\Views\DogadjajiMjere\Index.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\OperaterModul\Views\DogadjajiMjere\IndexZaUredi.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Autentifikacija\Index.cshtml">
@@ -109,6 +100,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\OperaterModul\Controllers\" />
+    <Folder Include="Areas\OperaterModul\Data\" />
+    <Folder Include="Areas\OperaterModul\Models\" />
+    <Folder Include="Areas\OperaterModul\Views\" />
     <Folder Include="wwwroot\Rotativa\" />
   </ItemGroup>
 
