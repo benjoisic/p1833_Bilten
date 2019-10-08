@@ -100,7 +100,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\OperaterModul\Controllers\" />
     <Folder Include="Areas\OperaterModul\Data\" />
     <Folder Include="Areas\OperaterModul\Models\" />
     <Folder Include="Areas\OperaterModul\Views\" />
