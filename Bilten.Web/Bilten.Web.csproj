@@ -108,8 +108,21 @@
 
   <ItemGroup>
     <Folder Include="Areas\OperaterModul\Models\" />
-    <Folder Include="Areas\OperaterModul\Views\" />
     <Folder Include="wwwroot\Rotativa\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\OperaterModul\Views\DogadjajiMjere\Dodaj.cshtml" />
+    <None Include="Areas\OperaterModul\Views\DogadjajiMjere\Index.cshtml" />
+    <None Include="Areas\OperaterModul\Views\DogadjajiMjere\IndexZaUredi.cshtml" />
+    <None Include="Areas\OperaterModul\Views\Dogadjaj\Detalji.cshtml" />
+    <None Include="Areas\OperaterModul\Views\Dogadjaj\Dodaj.cshtml" />
+    <None Include="Areas\OperaterModul\Views\Dogadjaj\Index.cshtml" />
+    <None Include="Areas\OperaterModul\Views\Dogadjaj\Lista.cshtml" />
+    <None Include="Areas\OperaterModul\Views\Dogadjaj\Lista2.cshtml" />
+    <None Include="Areas\OperaterModul\Views\Dogadjaj\Uredi.cshtml" />
+    <None Include="Areas\OperaterModul\Views\OrgJed\Index.cshtml" />
+    <None Include="Areas\OperaterModul\Views\PodorgJedinice\Index.cshtml" />
   </ItemGroup>
 
 </Project>

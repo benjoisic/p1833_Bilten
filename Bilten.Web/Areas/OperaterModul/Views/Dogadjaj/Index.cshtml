@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+}
+@using Bilten.Web.Areas.OperaterModul.ViewModels.Dogadjaj;
+@model DogadjajIndexVM
+
+<h5>Dodavanje novog događaja</h5>
+<hr />
+<h3>Odaberite kategoriju</h3>
+<hr />
+
+
+<table class="table table-bordered table-hover" style="width:50%">
+    <thead>
+        <tr>
+            <th>Kategorija</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.NazivKategorije</td>
+                <td><a href="/OperaterModul/Dogadjaj/Dodaj?=@x.KategorijeId" class="btn btn-info">Odaberi</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<hr />
+<a href="/OperaterModul"><< vrati na Početnu</a>
+<br />
+<br />
+
+
+
+
+

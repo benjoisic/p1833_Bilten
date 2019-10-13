@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "Uredi";
+    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+}
+@using Bilten.Web.Areas.OperaterModul.ViewModels.Dogadjaj;
+@model DogadjajUrediVM
+
+<h2>Uređivanje događaja</h2>
+
+<hr />
+<form action="/OperaterModul/Dogadjaj/SnimiPromjene" style="width:70%; padding:10px">
+    <input type="text" name="dogadjajId" value="@Model.DogadjajID" hidden />
+
+    <label><b>Vrsta događaja:</b></label>
+    <select name="vrsteId" class="form-control">
+        <option value="@Model.VrsteID">@Model.VrsteTekst</option>
+        @foreach (var x in Model.Vrste)
+        {
+            <option value="@x.Value">@x.Text</option>
+        }
+    </select>
+    <br />
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label><b>Organizaciona jedinica:</b></label>
+                <select name="orgJedId" class="form-control">
+                    <option value="@Model.OrgJedID">@Model.OrgJedTekst</option>
+                    @foreach (var x in Model.OrganizacioneJedinice)
+                    {
+                        <option value="@x.Value">@x.Text</option>
+                    }
+                </select>
+                <br />
+            </div>
+            <div class="col-md-6">
+                <label><b>Podorganizaciona jedinica:</b></label>
+                <select name="podOrgID" class="form-control">
+                    <option value="@Model.PodOrgID">@Model.PodOrgTekst</option>
+                    @foreach (var x in Model.PodorganizacioneJedinice)
+                    {
+                        <option value="@x.Value">@x.Text</option>
+                    }
+                </select>
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label><b>Datum događaja:</b></label>
+                <input type="text" name="datumDog" class="form-control" value="@Model.DatumDogadjaja" />
+                <br />
+            </div>
+            <div class="col-md-6">
+
+                <label><b>Datum prijave:</b></label>
+                <input type="text" name="datumPrijave" class="form-control" value="@Model.DatumPrijave" />
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label><b>Mjesto događaja:</b></label>
+                <input type="text" name="mjesto" class="form-control" value="@Model.MjestoDogadjaja" />
+                <br />
+            </div>
+            <div class="col-md-6">
+
+                <label><b>Prijavitelj:</b></label>
+                <input type="text" name="prijavitelj" class="form-control" value="@Model.Prijavitelj" />
+                <br />
+            </div>
+        </div>
+    </div>
+
+
+    <label><b>Opis:</b></label>
+    <input type="text" name="opis" class="form-control" value="@Model.Opis" />
+    <br />
+    <span>
+        <input type="submit" value="Sačuvaj promjene" class="btn btn-danger" />
+        <a href="/OperaterModul/Dogadjaj/Detalji?=@Model.DogadjajID" class="btn btn-secondary">Detalji događaja</a>
+    </span>
+    <div id="mjereStavkeUredi"></div>
+    <br />
+    <a href="/OperaterModul/Dogadjaj/Lista2"><< vrati na događaje</a>
+</form>
+<br />
+
+<script>
+    $.get("/OperaterModul/DogadjajiMjere/IndexZaUredi?=@Model.DogadjajID", function (rezultat, status) {
+          $("#mjereStavkeUredi").html(rezultat);
+    }); 
+</script>
+

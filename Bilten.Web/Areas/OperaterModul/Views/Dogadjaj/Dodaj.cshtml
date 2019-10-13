@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewData["Title"] = "Dodaj";
+    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+}
+@using Bilten.Web.Areas.OperaterModul.ViewModels.Dogadjaj;
+@model DogadjajDodajVM
+
+<div>
+    <h2 style="display:inline-block">Dodaj novi događaj za kategoriju "<b>@Model.Kategorija</b>"</h2>
+</div>
+<form action="/OperaterModul/Dogadjaj/Snimi" style="width:700px;  padding:10px;">
+
+    <hr />
+    <input type="text" name="kategorijaId" value="@Model.KategorijaID" hidden />
+
+    <label><b>Vrsta događaja:</b></label>
+    <select name="vrstaId" class="form-control" placeholder="oda">
+        @foreach (var x in Model.Vrste)
+        {
+            <option value="@x.Value">@x.Text</option>
+        }
+    </select>
+    <br /><div class="form-group">
+        <div class="form-row">
+
+            <div class="col-md-6">
+                <label><b>Organizaciona jedinica:</b></label>
+                <select name="orgJedinicaId" class="form-control">
+                    @foreach (var x in Model.OrganizacioneJedinice)
+                    {
+                        <option value="@x.Value">@x.Text</option>
+                    }
+                </select>
+                <br />
+            </div>
+            <div class="col-md-6">
+                <label><b>Podorganizaciona jedinica:</b></label>
+                <select name="PodorgJedinicaId" class="form-control">
+                    @foreach (var x in Model.PodorganizacioneJedinice)
+                    {
+                        <option value="@x.Value">@x.Text</option>
+                    }
+                </select>
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label><b>Datum događaja:</b></label>
+                <input type="date" name="datumDog" class="form-control" />
+                <br />
+            </div>
+
+            <div class="col-md-6">
+                <label><b>Datum prijave:</b></label>
+                <input type="date" name="datumPrijave" class="form-control" />
+                <br />
+            </div>
+        </div>
+    </div>
+    <label><b>Mjesto događaja:</b></label>
+    <input type="text" name="mjesto" class="form-control" />
+    <br />
+
+    <label><b>Prijavitelj:</b></label>
+    <input type="text" name="prijavitelj" class="form-control" />
+    <br />
+
+    <label><b>Opis:</b></label>
+    <textarea name="opis" class="form-control"></textarea>
+    <br />
+
+    <input type="submit" class="btn btn-success" value="Snimi" />
+    <a href="/OperaterModul" class="btn btn-danger" style="margin-left:10px;">Odustani</a>
+    <br />
+    <br />
+</form>
+<hr />
+<br /><br />

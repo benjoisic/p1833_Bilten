@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+}
+@using Bilten.Web.Areas.OperaterModul.ViewModels.OrganizacionaJedinica;
+@model OrgJedIndexVM
+
+<div>
+    <h2 style="display:inline-block">Pregled svih organizacionih jedinica</h2>
+    <a href="/OperaterModul" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
+
+<table class="table table-bordered table-condensed" style="width:600px;">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Rows)
+        {
+            <tr>
+                <td>@x.Naziv</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />

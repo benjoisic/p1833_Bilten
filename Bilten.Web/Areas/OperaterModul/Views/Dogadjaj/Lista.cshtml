@@ -1,0 +1,56 @@
+﻿@*@model IEnumerable<Bilten.Data.Models.Dogadjaj>*@
+
+
+    @{
+        ViewBag.Title = "Lista";
+        Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+    }
+    @using Bilten.Web.Areas.OperaterModul.ViewModels.Dogadjaj;
+    @model DogadjajListaVM
+   
+    <a href="/OperaterModul/Dogadjaj/Index" class="btn btn-info">Dodaj novi događaj</a>
+    <hr />
+
+    <h3>Svi prijavljeni događaji</h3>
+    <br />
+
+    <table class="listatable table table-sm table-bordered table-condensed  table-hover" style="width:95%;">
+        <thead style="padding:10px;">
+            <tr>
+                <th>Kategorija</th>
+                <th>Vrsta</th>
+                <th>Mjesto</th>
+                <th>Datum</th>
+                <th>Prijavitelj</th>
+                <th>Opis</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody style="padding:10px;">
+            @if(Model != null) { 
+            @foreach (var x in Model.Rows)
+            {
+            <tr>
+                <td width="10%">@x.Kategorije</td>
+                <td width="20%">@x.Vrste</td>
+                <td width="10%">@x.MjestoDogadjaja</td>
+                <td width="10%">@x.DatumPrijave</td>
+                <td width="15%">@x.Prijavitelj</td>
+                <td maxlength="20">@x.Opis</td>
+                <td>
+                    <a href="/OperaterModul/Dogadjaj/Uredi?=@x.DogadjajID" title="Uredi"><i class="fa fa-fw fa-edit"> </i></a>
+                    <a href="/OperaterModul/Dogadjaj/Detalji?=@x.DogadjajID" title="Detalji"><i class="fa fa-fw fa-book"> </i> </a>
+                    <a href="/OperaterModul/Dogadjaj/Obrisi?=@x.DogadjajID" title="Obrisi"><i class="fa fa-fw fa-close text-danger"> </i> </a>
+                </td>
+            </tr>
+
+            }}
+        </tbody>
+    </table>
+    <br />
+    <hr />
+    <a href="/OperaterModul"><< vrati na Početnu</a>
+    <br />
+    <br />
+
+
