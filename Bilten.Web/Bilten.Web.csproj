@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\OperaterModul\Data\**" />
+    <Content Remove="Areas\OperaterModul\Data\**" />
+    <EmbeddedResource Remove="Areas\OperaterModul\Data\**" />
+    <None Remove="Areas\OperaterModul\Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="jQuery" Version="3.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
@@ -100,7 +107,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\OperaterModul\Data\" />
     <Folder Include="Areas\OperaterModul\Models\" />
     <Folder Include="Areas\OperaterModul\Views\" />
     <Folder Include="wwwroot\Rotativa\" />
