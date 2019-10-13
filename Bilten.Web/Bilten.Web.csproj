@@ -112,6 +112,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\KontrolorModul\Views\Dogadjaj\Detalji.cshtml" />
+    <None Include="Areas\KontrolorModul\Views\Dogadjaj\Index.cshtml" />
+    <None Include="Areas\KontrolorModul\Views\Dogadjaj\ZvanicniBilten.cshtml" />
+    <None Include="Areas\KontrolorModul\Views\Home\Index.cshtml" />
     <None Include="Areas\OperaterModul\Views\DogadjajiMjere\Dodaj.cshtml" />
     <None Include="Areas\OperaterModul\Views\DogadjajiMjere\Index.cshtml" />
     <None Include="Areas\OperaterModul\Views\DogadjajiMjere\IndexZaUredi.cshtml" />

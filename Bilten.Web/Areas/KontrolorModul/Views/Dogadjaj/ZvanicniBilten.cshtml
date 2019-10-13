@@ -1,0 +1,60 @@
+﻿@using Bilten.Data.Models;
+@model List<Dogadjaj>
+
+@{
+    ViewData["Title"] = "Lista2";
+    Layout = "~/Views/Shared/_Layout-Kontrolor.cshtml";
+}
+
+<h4>Zvanični bilten</h4>
+<hr />
+
+
+@Html.ActionLink("Convert View To PDF", "PrintViewToPdf");
+<hr />
+<a href="/KontrolorModul/Dogadjaj/PrintViewToPdf">content</a>
+<br />
+<div id="HTMLtoPDF">
+    <table class="table table-sm table-bordered" style="width:95%">
+        <thead>
+            <tr>
+                <th>Kategorija</th>
+                <th>@Html.ActionLink("Vrste", "Index", new { sortOrder = ViewBag.Vrste })</th>
+                <th>@Html.ActionLink("Mjesto", "Index", new { sortOrder = ViewBag.Mjesto })</th>
+                <th>Org. Jedinica</th>
+                <th>@Html.ActionLink("Datum prijave", "Index", new { sortOrder = ViewBag.DatumPrijave })</th>
+                <th>Prijavitelj</th>
+                @*<th >Opis</th>*@
+                <th>Odabran</th>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var x in Model)
+                {
+                    <tr>
+                        <td>@x.Kategorije.Naziv</td>
+                        <td>@x.Vrste.Naziv</td>
+                        <td>@x.MjestoDogadjaja</td>
+                        <td>@x.OrganizacionaJedinica.Naziv</td>
+                        <td>@x.DatumPrijave</td>
+                        <td>@x.Prijavitelj</td>
+                        @*<td >@x.Opis</td>*@
+                        <td>
+                            @if (x.Odabran == true)
+                            {
+                                <a class="btn btn-success text-white">DA</a>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<hr />
+<a href="/KontrolorModul"><< vrati na Početnu</a>
+<br />
+<br />

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "Detalji";
+    Layout = "~/Views/Shared/_Layout-Kontrolor.cshtml";
+}
+@using Bilten.Web.Areas.KontrolorModul.ViewModels;
+@model DogadjajDetaljiVM
+<br />
+
+<h2>Detalji</h2>
+<hr />
+<form style="width:70%">
+    <label><b>Vrsta događaja:</b></label>
+    <input type="text" class="form-control" name="name" value="@Model.Vrste" readonly />
+    <br />
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label><b>Podorganizaciona jedinica:</b></label>
+                <input type="text" name="name" class="form-control" value="@Model.PodorganizacioneJedinice" readonly />
+                <br />
+            </div>
+            <div class="col-md-6">
+                <label><b>Organizaciona jedinica:</b></label>
+                <input type="text" class="form-control" name="name" value="@Model.OrganizacioneJedinice" readonly />
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label><b>Datum događaja:</b></label>
+                <input type="datetime" name="datumDog" class="form-control" value="@Model.DatumDogadjaja" readonly />
+                <br />
+            </div>
+            <div class="col-md-6">
+                <label><b>Datum prijave:</b></label>
+                <input type="datetime" name="datumPrijave" class="form-control" value="@Model.DatumPrijave" readonly />
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-row">
+            <div class="col-md-6">
+                <label><b>Mjesto događaja:</b></label>
+                <input type="text" name="mjesto" class="form-control" value="@Model.MjestoDogadjaja" readonly />
+                <br />
+            </div>
+            <div class="col-md-6">
+                <label><b>Prijavitelj:</b></label>
+                <input type="text" name="prijavitelj" class="form-control" value="@Model.Prijavitelj" readonly />
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <label><b>Opis:</b></label>
+    <textarea class="form-control" readonly>@Model.Opis"</textarea>
+    <br />
+
+    <div id="mjereStavke"></div>
+    <br />
+</form>
+<br />
+<hr />
+<a href="/KontrolorModul/Dogadjaj/Index"><< vrati na sve događaje</a>
+<br /><br />
+
+<script>
+    $.get("/OperaterModul/DogadjajiMjere/Index?=@Model.DogadjajID", function (rezultat, status) {
+          $("#mjereStavke").html(rezultat);
+    });
+</script>
+
