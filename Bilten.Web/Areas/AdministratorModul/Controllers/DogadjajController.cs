@@ -228,7 +228,7 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 _context.SaveChanges();
             }
 
-            return Redirect("/AdministratorModul/Dogadjaj/Prikazi?="+novi.KategorijeId);
+            return Redirect("/AdministratorModul/Dogadjaj/Lista2");
         }
 
         public IActionResult Lista2(string SearchString, string sortOrder)
