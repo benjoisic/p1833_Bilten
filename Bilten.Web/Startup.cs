@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Rotativa.AspNetCore;
 
 namespace Bilten.Web
 {
@@ -58,6 +59,7 @@ namespace Bilten.Web
                 app.UseHsts();
             }
 
+            RotativaConfiguration.Setup(env);
 
             // IMPORTANT: This session call MUST go before UseMvc()
             app.UseSession();

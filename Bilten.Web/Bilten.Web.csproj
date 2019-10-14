@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Areas\OperaterModul\Data\**" />
+    <Compile Remove="wwwroot\Rotativa\**" />
     <Content Remove="Areas\OperaterModul\Data\**" />
+    <Content Remove="wwwroot\Rotativa\**" />
     <EmbeddedResource Remove="Areas\OperaterModul\Data\**" />
+    <EmbeddedResource Remove="wwwroot\Rotativa\**" />
     <None Remove="Areas\OperaterModul\Data\**" />
+    <None Remove="wwwroot\Rotativa\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,9 +20,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
-    <PackageReference Include="Rotativa" Version="1.7.3" />
-    <PackageReference Include="Rotativa.Core" Version="2.0.2.1" />
-    <PackageReference Include="Rotativa.MVC" Version="2.0.3" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -108,7 +110,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\OperaterModul\Models\" />
-    <Folder Include="wwwroot\Rotativa\" />
   </ItemGroup>
 
   <ItemGroup>

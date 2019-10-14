@@ -8,7 +8,8 @@ using Bilten.Data.Models;
 using Bilten.Web.Areas.KontrolorModul.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Rotativa;
+using Rotativa.Core;
+using Rotativa.AspNetCore;
 
 namespace Bilten.Web.Areas.KontrolorModul.Controllers
 {
@@ -153,6 +154,29 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
         //    var pdf = new ViewAsPdf("ZvanicniBilten");
 
         //    return pdf;
+        //}
+
+        //public ActionResult PrintViewToPdf()
+        //{
+        //    return new ActionAsPdf("ZvanicniBilten");
+        //}
+
+        public ActionResult PrintViewToPdf()
+        {
+            List<Dogadjaj> dogadjaji = _context.Dogadjaj.Where(x => x.Odabran == true)
+              .Include(x => x.Vrste).Include(y => y.Kategorije)
+              .Include(a => a.OrganizacionaJedinica)
+              .Include(z => z.PodorganizacionaJedinica).ToList();
+
+            ViewBag.SomeData = "Ciao";
+            return new ViewAsPdf("ZvanicniBilten", dogadjaji);
+        }
+
+        //public actionresult printviewtopdf()
+        //{
+        //    var model = new generatepdfmodel();
+        //    //code to get content
+        //    return new rotativa.viewaspdf("generatepdf", model) { filename = "testviewaspdf.pdf" }
         //}
 
         ////public ActionResult PrintInvoice(int invoiceId)

@@ -103,6 +103,17 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         }
 
+        public IActionResult Obrisi(int dogadjajId)
+        {
+            Dogadjaj temp = _context.Dogadjaj.Where(x => x.Id == dogadjajId).FirstOrDefault();
+
+            _context.Dogadjaj.Remove(temp);
+            _context.SaveChanges();
+
+            return Redirect("/AdministratorModul/Dogadjaj/Lista2");
+
+        }
+
 
         public IActionResult Dodaj(int kategorijeId)
         {
