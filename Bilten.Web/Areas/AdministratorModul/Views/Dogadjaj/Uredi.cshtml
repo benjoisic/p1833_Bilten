@@ -16,7 +16,7 @@
 
     <label><b>Vrsta događaja:</b></label>
     <select name="vrsteId" class="form-control">
-        <option value="@Model">@Model.VrsteTekst</option>
+        <option value="@Model.VrsteID">@Model.VrsteTekst</option>
         @foreach (var x in Model.Vrste)
         {
             <option value="@x.Value">@x.Text</option>

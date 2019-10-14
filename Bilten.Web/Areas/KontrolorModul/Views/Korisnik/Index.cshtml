@@ -1,16 +1,16 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+    Layout = "~/Views/Shared/_Layout-Kontrolor.cshtml";
 }
-@using Bilten.Web.Areas.OperaterModul.ViewModels.Korisnik;
+@using Bilten.Web.Areas.KontrolorModul.ViewModels;
 @model KorisnikIndexVM
 
 
 <div>
     <h4 style="padding-right:15px; display:inline-block">Informacije o korisniku <b>"@Model.username"   </b></h4>
-    <a href="/OperaterModul/Korisnik/UrediProfil?=@Model.KorisnikId" class="btn btn-primary">   Uredi profil</a>
-    <a href="/OperaterModul/Home" class="btn btn-primary " style="float:right;margin-right:10px"><i class="fa fa-backward"></i></a>
+    <a href="/KontrolorModul/Korisnik/UrediProfil?=@Model.KorisnikId" class="btn btn-primary">   Uredi profil</a>
+    <a href="/KontrolorModul/Home" class="btn btn-primary " style="float:right;margin-right:10px"><i class="fa fa-backward"></i></a>
 
     <hr />
 </div>

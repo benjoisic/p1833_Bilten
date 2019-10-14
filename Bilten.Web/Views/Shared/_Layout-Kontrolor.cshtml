@@ -52,24 +52,35 @@
                     </a>
                 </li>
 
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Događaji">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-sitemap"></i>
-                        <span class="nav-link-text">Dogadjaji</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseMulti">
-                        <li>
-                            <a href="/KontrolorModul/Dogadjaj/Index">Prikazi dogadjaje</a>
-                        </li>
-                        <li>
-                            <a href="/KontrolorModul/Dogadjaj/ZvanicniBilten">Zvanični bilten</a>
-                        </li>
-
-
-                    </ul>
+                @*<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Događaji">
+            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+                <i class="fa fa-fw fa-sitemap"></i>
+                <span class="nav-link-text">Dogadjaji</span>
+            </a>
+            <ul class="sidenav-second-level collapse" id="collapseMulti">
+                <li>
+                    <a href="/KontrolorModul/Dogadjaj/Index">Prikazi dogadjaje</a>
+                </li>
+                <li>
+                    <a href="/KontrolorModul/Dogadjaj/ZvanicniBilten">Zvanični bilten</a>
                 </li>
 
 
+            </ul>
+        </li>*@
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Svi događaji">
+                    <a class="nav-link" href="/KontrolorModul/Dogadjaj/Index">
+                        <i class="fa fa-fw fa-list"></i>
+                        <span class="nav-link-text">Svi događaji</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Svi događaji">
+                    <a class="nav-link" href="/KontrolorModul/Dogadjaj/ZvanicniBilten">
+                        <i class="fa fa-fw fa-check-square"></i>
+                        <span class="nav-link-text">Zvanični bilten</span>
+                    </a>
+                </li>
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                     <a class="nav-link" href="http://www.muphnk.ba/">
@@ -87,7 +98,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="/OperaterModul/Korisnik/Index?=@idKorisnika"> @*Treba dodati index za korisnike*@
+                    <a class="nav-link" href="/KontrolorModul/Korisnik/Index?=@idKorisnika"> @*Treba dodati index za korisnike*@
                         <i class="fa"></i><h4 style="display:inline">Dobro došli  @korisnik.Username</h4>
                     </a>
 

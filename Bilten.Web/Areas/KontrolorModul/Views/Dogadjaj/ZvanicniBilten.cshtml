@@ -6,13 +6,17 @@
     Layout = "~/Views/Shared/_Layout-Kontrolor.cshtml";
 }
 
-<h4>Zvanični bilten</h4>
+<div>
+    <h2 style="display:inline-block">Zvanični bilten</h2>
+    <a href="/KontrolorModul" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-caret-left"></i></a>
+</div>
 <hr />
 
 
-@Html.ActionLink("Convert View To PDF", "PrintViewToPdf");
-<hr />
-<a href="/KontrolorModul/Dogadjaj/PrintViewToPdf">content</a>
+@*<button class="btn btn-light">@Html.ActionLink("Convert View To PDF", "PrintViewToPdf");</button>*@
+
+<a href="/KontrolorModul/Dogadjaj/PrintViewToPdf" class="btn btn-primary"   >Kreiraj PDF</a>
+<br />
 <br />
 <div id="HTMLtoPDF">
     <table class="table table-sm table-bordered" style="width:95%">
@@ -55,6 +59,4 @@
 </div>
 <br />
 <hr />
-<a href="/KontrolorModul"><< vrati na Početnu</a>
-<br />
 <br />

@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout-Kontrolor.cshtml";
+}
+@using Bilten.Web.Areas.KontrolorModul.ViewModels;
+@model KorisnikIndexVM
+
+<div>
+    <h2 style="display:inline-block">Uredi profil <b>"@Model.username"</b></h2>
+    <a href="/KontrolorModul/Korisnik/Index?=@Model.KorisnikId" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
+    <hr />
+</div>
+<form action="/KontrolorModul/Korisnik/SnimiPromjene" style="width:50%;">
+    <label><b>username:</b></label>
+    <input type="text" name="korisnikId" value="@Model.KorisnikId" hidden />
+    <input type="text" name="nalogId" value="@Model.KorisnickiNalogId" hidden />
+
+    <input type="text" name="username" class="form-control" value="@Model.username" />
+    <br />
+
+    <label><b>Password:</b></label>
+    <input type="password" class="form-control" value="@Model.password" />
+    <br />
+
+
+
+    <br />
+    <input type="submit" value="Snimi" class="btn btn-success" />
+    <a href="/KontrolorModul/Korisnik/PromjeniPassword?=@Model.KorisnikId" class="btn btn-primary" style="margin-left:10px;">Promjeni password</a>
+</form>
+<br />
+<hr />
+<br />
