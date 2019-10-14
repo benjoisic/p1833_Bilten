@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rotativa.Core;
 using Rotativa.AspNetCore;
+using PagedList.Mvc;
+using PagedList;
 
 namespace Bilten.Web.Areas.KontrolorModul.Controllers
 {
@@ -24,17 +26,30 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
         }
 
 
-        public IActionResult Index(string SearchString, string sortOrder)
+        public IActionResult Index(string SearchString, string sortOrder, string currentFilter, int? page)
         {
             List<Dogadjaj> dogadjaji = _context.Dogadjaj
                 .Include(x => x.Vrste).Include(y => y.Kategorije)
                 .Include(a => a.OrganizacionaJedinica)
                 .Include(z => z.PodorganizacionaJedinica).ToList();
 
+            ViewBag.CurrentSort = sortOrder;
+
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+
             if (!String.IsNullOrEmpty(SearchString))
             {
                 dogadjaji = dogadjaji.Where(s => s.Vrste.Naziv.Contains(SearchString)
-                || s.MjestoDogadjaja.Contains(SearchString)).ToList();
+                || s.MjestoDogadjaja.Contains(SearchString) || s.Opis.Contains(SearchString)).ToList();
             }
 
             ViewBag.Vrste = sortOrder == "Vrste" ? "Vrste_desc" : "Vrste";
@@ -56,8 +71,10 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
                     dogadjaji = dogadjaji.OrderBy(s => s.Id).ToList();
                     break;
             }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
 
-            return View(dogadjaji);
+            return View(dogadjaji.ToPagedList(pageNumber, pageSize));
         }
 
         public IActionResult Odabran(int dogadjajId)
@@ -113,31 +130,31 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
                 .Include(a => a.OrganizacionaJedinica)
                 .Include(z => z.PodorganizacionaJedinica).ToList();
 
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                dogadjaji = dogadjaji.Where(s => s.Vrste.Naziv.Contains(SearchString)
-                || s.MjestoDogadjaja.Contains(SearchString)).ToList();
-            }
+            //if (!String.IsNullOrEmpty(SearchString))
+            //{
+            //    dogadjaji = dogadjaji.Where(s => s.Vrste.Naziv.Contains(SearchString)
+            //    || s.MjestoDogadjaja.Contains(SearchString)).ToList();
+            //}
 
-            ViewBag.Vrste = sortOrder == "Vrste" ? "Vrste_desc" : "Vrste";
-            ViewBag.DatumPrijave = sortOrder == "DatumPrijave" ? "DatumPrijave_desc" : "DatumPrijave";
-            ViewBag.Mjesto = sortOrder == "Mjesto" ? "Mjesto_desc" : "Mjesto";
+            //ViewBag.Vrste = sortOrder == "Vrste" ? "Vrste_desc" : "Vrste";
+            //ViewBag.DatumPrijave = sortOrder == "DatumPrijave" ? "DatumPrijave_desc" : "DatumPrijave";
+            //ViewBag.Mjesto = sortOrder == "Mjesto" ? "Mjesto_desc" : "Mjesto";
 
-            switch (sortOrder)
-            {
-                case "Vrste_desc":
-                    dogadjaji = dogadjaji.OrderByDescending(s => s.Vrste.Naziv).ToList();
-                    break;
-                case "DatumPrijave_desc":
-                    dogadjaji = dogadjaji.OrderByDescending(s => s.DatumPrijave).ToList();
-                    break;
-                case "Mjesto_desc":
-                    dogadjaji = dogadjaji.OrderByDescending(s => s.MjestoDogadjaja).ToList();
-                    break;
-                default:
-                    dogadjaji = dogadjaji.OrderBy(s => s.Id).ToList();
-                    break;
-            }
+            //switch (sortOrder)
+            //{
+            //    case "Vrste_desc":
+            //        dogadjaji = dogadjaji.OrderByDescending(s => s.Vrste.Naziv).ToList();
+            //        break;
+            //    case "DatumPrijave_desc":
+            //        dogadjaji = dogadjaji.OrderByDescending(s => s.DatumPrijave).ToList();
+            //        break;
+            //    case "Mjesto_desc":
+            //        dogadjaji = dogadjaji.OrderByDescending(s => s.MjestoDogadjaja).ToList();
+            //        break;
+            //    default:
+            //        dogadjaji = dogadjaji.OrderBy(s => s.Id).ToList();
+            //        break;
+            //}
 
             return View(dogadjaji);
         }

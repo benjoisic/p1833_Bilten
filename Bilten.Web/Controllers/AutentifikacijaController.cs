@@ -31,7 +31,7 @@ namespace Bilten.Web.Controllers
         public IActionResult Login(LoginVM input)
         {
             KorisnickiNalog korisnik = _context.KorisnickiNalog
-                .SingleOrDefault(x => x.Username == input.username && x.Lozinka == input.password);
+                .Where(x => x.Username == input.username && x.Lozinka == input.password).FirstOrDefault();
 
             if (korisnik == null)
             {

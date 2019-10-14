@@ -1,5 +1,12 @@
 ﻿@using Bilten.Data.Models;
-@model List<Dogadjaj>
+@*@model List<Dogadjaj>*@
+
+@model IPagedList<Bilten.Data.Models.Dogadjaj>
+@using PagedList.Mvc;
+@using PagedList;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewData["Title"] = "Lista2";
@@ -12,15 +19,15 @@
 <hr />
 @using (Html.BeginForm())
 {
-<div class="input-group">
-    @*Pretraga: @Html.TextBox("SearchString", "", new { placeholder = "po vrsti ili mjestu" })*@
-    <span class="input-group-append">
-        <input class="form-control" type="text" placeholder="Pretraga po vrsti ili mjestu..." name="SearchString">
-        <button class="btn btn-primary" type="submit">
-            <i class="fa fa-search"></i>
-        </button>
-    </span>
-</div>
+    <div class="input-group">
+        @*Pretraga: @Html.TextBox("SearchString", "", new { placeholder = "po vrsti ili mjestu" })*@
+        <span class="input-group-append">
+            <input class="form-control" type="text" placeholder="po vrsti, mjestu, opisu.." name="SearchString">
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
 }
 
 <br />
@@ -35,9 +42,9 @@
                 <th>Org. Jedinica</th>
                 <th>@Html.ActionLink("Datum prijave", "Index", new { sortOrder = ViewBag.DatumPrijave })</th>
                 <th>Prijavitelj</th>
-                <th >Opis</th>
+                <th>Opis</th>
                 <th>Odabran</th>
-                <th ></th>
+                <th></th>
         </thead>
         <tbody>
             @if (Model != null)
@@ -51,7 +58,7 @@
                         <td>@x.OrganizacionaJedinica.Naziv</td>
                         <td>@x.DatumPrijave</td>
                         <td>@x.Prijavitelj</td>
-                        <td >@x.Opis</td>
+                        <td>@x.Opis</td>
                         <td>
                             @if (x.Odabran == true)
                             {
@@ -72,7 +79,10 @@
             }
         </tbody>
     </table>
-    </div>
-    <br />
-    <hr />
-    <br />
+</div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+<br />
+<hr />
+<br />

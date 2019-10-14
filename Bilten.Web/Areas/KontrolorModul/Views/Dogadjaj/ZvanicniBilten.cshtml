@@ -19,17 +19,17 @@
 <br />
 <br />
 <div id="HTMLtoPDF">
-    <table class="table table-sm table-bordered" style="width:95%">
+    <table class="table table-sm" style="width:95%">
         <thead>
             <tr>
                 <th>Kategorija</th>
-                <th>@Html.ActionLink("Vrste", "Index", new { sortOrder = ViewBag.Vrste })</th>
-                <th>@Html.ActionLink("Mjesto", "Index", new { sortOrder = ViewBag.Mjesto })</th>
+                <th>Vrste</th>
+                <th>Mjesto</th>
                 <th>Org. Jedinica</th>
-                <th>@Html.ActionLink("Datum prijave", "Index", new { sortOrder = ViewBag.DatumPrijave })</th>
+                <th>Datum</th>
                 <th>Prijavitelj</th>
-                @*<th >Opis</th>*@
-                <th>Odabran</th>
+                <th >Opis</th>
+                @*<th>Odabran</th>*@
         </thead>
         <tbody>
             @if (Model != null)
@@ -43,14 +43,14 @@
                         <td>@x.OrganizacionaJedinica.Naziv</td>
                         <td>@x.DatumPrijave</td>
                         <td>@x.Prijavitelj</td>
-                        @*<td >@x.Opis</td>*@
-                        <td>
+                        <td >@x.Opis</td>
+                        @*<td>
                             @if (x.Odabran == true)
                             {
                                 <a class="btn btn-success text-white">DA</a>
                             }
 
-                        </td>
+                        </td>*@
                     </tr>
                 }
             }
