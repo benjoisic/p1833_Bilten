@@ -1,11 +1,6 @@
 ﻿@using Bilten.Data.Models;
-@*@model List<Dogadjaj>*@
+@model List<Dogadjaj>
 
-@model IPagedList<Bilten.Data.Models.Dogadjaj>
-@using PagedList.Mvc;
-@using PagedList;
-
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 
 @{
@@ -17,11 +12,11 @@
     <a href="/KontrolorModul" class="btn btn-primary" style="float:right;margin-right:50px"><i class="fa fa-backward"></i></a>
 </div>
 <hr />
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Dogadjaj", FormMethod.Post))
 {
     <div class="input-group">
-        @*Pretraga: @Html.TextBox("SearchString", "", new { placeholder = "po vrsti ili mjestu" })*@
         <span class="input-group-append">
+
             <input class="form-control" type="text" placeholder="po vrsti, mjestu, opisu.." name="SearchString">
             <button class="btn btn-primary" type="submit">
                 <i class="fa fa-search"></i>
@@ -80,9 +75,7 @@
         </tbody>
     </table>
 </div>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
 <br />
 <hr />
 <br />

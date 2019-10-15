@@ -265,7 +265,7 @@ namespace Bilten.Web.Areas.OperaterModul.Controllers
             if (!String.IsNullOrEmpty(SearchString))
             {
                 dogadjaji = dogadjaji.Where(s => s.Vrste.Naziv.Contains(SearchString) 
-                || s.MjestoDogadjaja.Contains(SearchString)).ToList();
+                || s.MjestoDogadjaja.Contains(SearchString) || s.Opis.Contains(SearchString)).ToList();
             }
 
             ViewBag.Vrste = sortOrder == "Vrste" ? "Vrste_desc" : "Vrste";

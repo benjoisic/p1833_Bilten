@@ -26,25 +26,14 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
         }
 
 
-        public IActionResult Index(string SearchString, string sortOrder, string currentFilter, int? page)
+        public IActionResult Index(string SearchString, string sortOrder)
         {
             List<Dogadjaj> dogadjaji = _context.Dogadjaj
                 .Include(x => x.Vrste).Include(y => y.Kategorije)
                 .Include(a => a.OrganizacionaJedinica)
                 .Include(z => z.PodorganizacionaJedinica).ToList();
 
-            ViewBag.CurrentSort = sortOrder;
-
-            if (SearchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                SearchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = SearchString;
+            
 
             if (!String.IsNullOrEmpty(SearchString))
             {
@@ -71,10 +60,8 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
                     dogadjaji = dogadjaji.OrderBy(s => s.Id).ToList();
                     break;
             }
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
 
-            return View(dogadjaji.ToPagedList(pageNumber, pageSize));
+            return View(dogadjaji);
         }
 
         public IActionResult Odabran(int dogadjajId)
