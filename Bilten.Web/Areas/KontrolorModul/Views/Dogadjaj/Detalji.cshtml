@@ -1,7 +1,6 @@
 ﻿@model Bilten.Data.Models.Dogadjaj
 
 @{
-    ViewData["Title"] = "Detalji2";
     Layout = "~/Views/Shared/_Layout-Kontrolor.cshtml";
     var slikaPath = "~/images/" + (Model.SlikaPath ?? "noimage.jpg");
 }
@@ -64,7 +63,7 @@
     <br />
     <br />
 
-    <div id="mjereStavke" style="display:contents"></div>
+    <div id="mjereStavke5" style="display:contents"></div>
     <hr /><label><b>Slika:</b></label>
     <br />
     <img src="@slikaPath" alt="no image" asp-append-version="true" style="max-width:100%;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19); " />
@@ -75,8 +74,8 @@
 
 <script>
     $(document).ready(function (parameters) {
-      $.get("/OperaterModul/DogadjajiMjere/Index?=@Model.Id", function (rezultat, status) {
-          $("#mjereStavke").html(rezultat);
+      $.get("/KontrolorModul/DogadjajiMjere/Index?=@Model.Id", function (rezultat, status) {
+          $("#mjereStavke5").html(rezultat);
         });
     });
 </script>

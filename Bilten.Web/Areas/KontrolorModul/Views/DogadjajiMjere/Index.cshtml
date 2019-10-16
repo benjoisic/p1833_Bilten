@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@using Bilten.Web.Areas.KontrolorModul.ViewModels;
+@model DogadjajiMjereIndexVM
+
+<input type="hidden" name="name" value="@Model.DogadjajID" />
+<h6></h6>
+
+<div class="card mb-2">
+    <div class="card-header">
+        <i class="fa fa-shield"></i> Poduzete mjere
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+
+                <thead>
+
+                </thead>
+                <tbody>
+                    @foreach (var x in Model.Rows)
+                    {
+                        <tr>
+                            <td><i class="fa fa-fw fa-check text-success" style="padding-right:5px; font-size:20px;"></i>@x.Mjera</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
