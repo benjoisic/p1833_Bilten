@@ -66,6 +66,15 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 return Redirect("/Autentifikacija/Index");
             }
 
+            List<OrganizacionaJedinica> temp1 = _context.OrganizacionaJedinica.ToList();
+
+            foreach (var item in temp1)
+            {
+                if (item.Naziv == Naziv)
+                    return Redirect("/AdministratorModul/OrganizacionaJedinica/Index");
+            }
+
+
             ///OrganizacionaJedinica/Snimi?Naziv=&name=Snimi
             OrganizacionaJedinica novo = new OrganizacionaJedinica();
             novo.Naziv = Naziv;

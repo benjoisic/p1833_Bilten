@@ -16,7 +16,7 @@
     <input type="text" name="kategorijaId" value="@Model.KategorijaID" hidden />
 
     <label><b>Vrsta događaja:</b></label>
-    <select name="vrstaId" class="form-control" placeholder="oda">
+    <select name="vrstaId" class="form-control" required placeholder="oda">
         @foreach (var x in Model.Vrste)
         {
             <option value="@x.Value">@x.Text</option>
@@ -63,11 +63,11 @@
         </div>
     </div>
     <label><b>Mjesto događaja:</b></label>
-    <input type="text" name="mjesto" class="form-control" />
+    <input type="text" name="mjesto" required class="form-control" />
     <br />
 
     <label><b>Prijavitelj:</b></label>
-    <input type="text" name="prijavitelj" class="form-control" />
+    <input type="text" name="prijavitelj" required class="form-control" />
     <br />
 
     <label><b>Opis:</b></label>

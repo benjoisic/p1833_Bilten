@@ -97,6 +97,14 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 return Redirect("/Autentifikacija/Index");
             }
 
+            List<Mjere> temp1 = _context.Mjere.ToList();
+
+            foreach (var item in temp1)
+            {
+                if (item.Opis == opisMjere)
+                    return Redirect("/AdministratorModul/Mjere/Prikazi?=" + kategorijeId);
+            }
+
             Mjere novo = new Mjere();
             novo.Opis = opisMjere;
             novo.KategorijeId = kategorijeId;

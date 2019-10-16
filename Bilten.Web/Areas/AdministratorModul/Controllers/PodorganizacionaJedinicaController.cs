@@ -102,6 +102,7 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 return Redirect("/Autentifikacija/Index");
             }
 
+
             PodorganizacionaJedinica novo = new PodorganizacionaJedinica();
             novo.OrganizacionaJedinicaId = orgJedId;
             novo.Naziv = podOrgNaziv;

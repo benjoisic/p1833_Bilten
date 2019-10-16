@@ -95,6 +95,14 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 return Redirect("/Autentifikacija/Index");
             }
 
+            List<Vrste> temp1 = _context.Vrste.ToList();
+
+            foreach (var item in temp1)
+            {
+                if (item.Naziv == nazivVrste)
+                    return Redirect("/AdministratorModul/Vrste/Odaberi?=" + kategorijeId);
+            }
+
             Vrste novo = new Vrste();
             novo.Naziv = nazivVrste;
             novo.KategorijeId = kategorijeId;

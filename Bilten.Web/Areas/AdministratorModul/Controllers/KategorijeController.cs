@@ -66,6 +66,14 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 return Redirect("/Autentifikacija/Index");
             }
 
+            List<Kategorije> temp1 = _context.Kategorije.ToList();
+
+            foreach (var item in temp1)
+            {
+                if (item.Naziv == naziv)
+                    return Redirect("/AdministratorModul/Kategorije/Index");
+            }
+
             Kategorije novo = new Kategorije();
             novo.Naziv = naziv;
 
@@ -132,10 +140,14 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
             }
 
             Kategorije novo = _context.Kategorije.Where(x => x.Id == KategorijeId).FirstOrDefault();
-            novo.Naziv = naziv;
 
-            _context.Kategorije.Update(novo);
-            _context.SaveChanges();
+       
+           
+                _context.Kategorije.Update(novo);
+                _context.SaveChanges();
+          
+
+            
 
             return RedirectToAction("Index");
         }

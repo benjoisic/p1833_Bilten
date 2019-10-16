@@ -16,7 +16,7 @@
     <input type="text" name="kategorijeId" value="@Model.KategorijeId" hidden />
 
     <label>Naziv:</label>
-    <input type="text" class="form-control col-lg-6" name="nazivVrste" />
+    <input type="text" class="form-control col-lg-6" required name="nazivVrste" />
     @Html.ValidationMessageFor(model => model.NazivKategorije) <!--"Name is required"-->
     <br />
     <br />

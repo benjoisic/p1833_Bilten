@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,8 +17,10 @@ namespace Bilten.Web.Areas.AdministratorModul.ViewModels.Dogadjaj
         public int OrganizacionaJedinicaID { get; set; }
             public List<SelectListItem> PodorganizacioneJedinice { get; set; }
             public List<SelectListItem> Vrste { get; set; }
+            [DisplayFormat(DataFormatString = "dd.MM.yyyy")]
             public DateTime DatumDogadjaja { get; set; }
-            public string MjestoDogadjaja { get; set; }
+        [Required(ErrorMessage = "Mjesto događaja je obavezno!")]
+        public string MjestoDogadjaja { get; set; }
             public DateTime DatumPrijave { get; set; }
             public string Prijavitelj { get; set; }
             public string Opis { get; set; }
