@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Uredi";
     Layout = "~/Views/Shared/_Layout-Operater.cshtml";
+    var slikaPath = "~/images/" + (Model.Slika ?? "noimage.jpg");
 }
 @using Bilten.Web.Areas.OperaterModul.ViewModels.Dogadjaj;
 @model DogadjajUrediVM
@@ -13,8 +14,7 @@
     <hr />
 </div>
 
-<hr />
-<form action="/OperaterModul/Dogadjaj/SnimiPromjene" style="width:70%; padding:10px">
+<form asp-action="SnimiPromjene" asp-controller="Dogadjaj" enctype="multipart/form-data" style="width:70%; padding:10px">
     <input type="text" name="dogadjajId" value="@Model.DogadjajID" hidden />
 
     <label><b>Vrsta događaja:</b></label>
@@ -62,7 +62,7 @@
             <div class="col-md-6">
 
                 <label><b>Datum prijave:</b></label>
-                <input type="text" name="datumPrijave" class="form-control" value="@Model.DatumPrijave" />
+                <input type="datetime" name="datumPrijave" class="form-control" value="@Model.DatumPrijave" />
                 <br />
             </div>
         </div>
@@ -87,19 +87,55 @@
     <label><b>Opis:</b></label>
     <input type="text" name="opis" class="form-control" value="@Model.Opis" />
     <br />
-    <span>
-        <input type="submit" value="Sačuvaj promjene" class="btn btn-danger" />
-        <a href="/OperaterModul/Dogadjaj/Detalji?=@Model.DogadjajID" class="btn btn-secondary">Detalji događaja</a>
-    </span>
+
+    <br />
+    <label><b>Slika:</b></label>
+    <br />
+    <img src="@slikaPath" alt="" asp-append-version="true" style="max-width:40%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
+
+    <div>
+        @{
+            if (Model.Slika == null)
+            {
+                <div class="col-md-10">
+                    <label asp-for="SlikaFF">No image</label>
+                    <div class="custom-file">
+                        <input asp-for="SlikaFF" class="form-control custom-file-input" />
+                        <label class="custom-file-label">Postavi sliku..</label>
+                    </div>
+                </div>
+            }
+        }
+        <br />
+        @{
+            if (Model.Slika != null)
+            {
+
+
+                <a href="/OperaterModul/Dogadjaj/ObrisiSliku?=@Model.DogadjajID" class="btn-sm btn-danger">Obriši sliku</a>
+            }
+        }
+    </div>
+    <br />
+    <hr />
     <div id="mjereStavkeUredi"></div>
     <br />
-    <a href="/OperaterModul/Dogadjaj/Lista2"><< vrati na događaje</a>
+    <hr />
+    <span>
+        <input type="submit" value="Snimi promjene" class="btn btn-success" />
+        <a href="/OperaterModul/Dogadjaj/Detalji2?=@Model.DogadjajID" class="btn btn-primary">Detalji</a>
+    </span>
 </form>
 <br />
 
 <script>
     $.get("/OperaterModul/DogadjajiMjere/IndexZaUredi?=@Model.DogadjajID", function (rezultat, status) {
           $("#mjereStavkeUredi").html(rezultat);
-    }); 
+    });
+
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
 </script>
 

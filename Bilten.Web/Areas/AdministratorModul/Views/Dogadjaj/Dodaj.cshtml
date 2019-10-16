@@ -10,7 +10,7 @@
 <h4>Dodaj novi događaj za kategoriju "<b>@Model.Kategorija</b>"</h4>
 
 
-<form action="/AdministratorModul/Dogadjaj/Snimi" style="width:700px;  padding:10px;">
+<form asp-action="Snimi" asp-controller="Dogadjaj" enctype="multipart/form-data" style="width:700px;  padding:10px;">
 
     <hr />
     <input type="text" name="kategorijaId" value="@Model.KategorijaID" hidden />
@@ -74,8 +74,25 @@
     <textarea name="opis" class="form-control"></textarea>
     <br />
 
+    <div class="col-md-10">
+        <label asp-for="SlikaFF"><b>Slika:</b></label>
+        <div class="custom-file">
+            <input asp-for="SlikaFF" class="form-control custom-file-input" />
+            <label class="custom-file-label">dodajte sliku..</label>
+        </div>
+    </div>
+    <br />
+    <br />
     <input type="submit" class="btn btn-success" value="Snimi" />
     <a href="/AdministratorModul" class="btn btn-danger" style="margin-left:10px;">Odustani</a>
     <br />
     <br />
 </form>
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    });
+</script>

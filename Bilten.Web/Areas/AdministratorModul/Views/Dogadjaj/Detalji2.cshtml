@@ -2,13 +2,14 @@
 
 @{
     ViewData["Title"] = "Detalji2";
-    Layout = "~/Views/Shared/_Layout-Kontrolor.cshtml";
+    Layout = "~/Views/Shared/_Layout-Admin.cshtml";
     var slikaPath = "~/images/" + (Model.SlikaPath ?? "noimage.jpg");
+    <link href="~/css/sb-admin.css" rel="stylesheet">
 }
 
 <div>
     <h2 style="display:inline-block">Detalji</h2>
-    <a href="/KontrolorModul/Dogadjaj/Index" class="btn btn-primary " style="float:right;margin-right:20px"><i class="fa fa-backward"></i></a>
+    <a href="/AdministratorModul/Dogadjaj/Lista2" class="btn btn-primary " style="float:right;margin-right:20px"><i class="fa fa-backward"></i></a>
 
     <hr />
 </div>
@@ -67,15 +68,21 @@
     <div id="mjereStavke" style="display:contents"></div>
     <hr /><label><b>Slika:</b></label>
     <br />
-    <img src="@slikaPath" alt="no image" asp-append-version="true" style="max-width:100%;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19); " />
+    <img src="@slikaPath" alt="no image" asp-append-version="true" style="max-width:100%; " />
 
 
 </form>
 <br /><br />
 
+
+
+
+<hr />
+<a href="/AdministratorModul/Dogadjaj/Uredi?=@Model.Id" class="btn btn-primary text-white">Poduzmi mjere</a>
+<br /><br />
 <script>
     $(document).ready(function (parameters) {
-      $.get("/OperaterModul/DogadjajiMjere/Index?=@Model.Id", function (rezultat, status) {
+      $.get("/AdministratorModul/DogadjajiMjere/Index?=@Model.Id", function (rezultat, status) {
           $("#mjereStavke").html(rezultat);
         });
     });

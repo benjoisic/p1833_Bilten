@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Bilten.Data.Models
 {
@@ -32,5 +33,7 @@ namespace Bilten.Data.Models
         public string Opis { get; set; }
 
         public bool? Odabran { get; set; }
+
+        public string SlikaPath { get; set; }
     }
 }

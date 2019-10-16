@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bilten.Data.Migrations
 {
     [DbContext(typeof(MojContext))]
-    [Migration("20190930221640_DogOdabran")]
-    partial class DogOdabran
+    [Migration("20191015155447_initialDb")]
+    partial class initialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -44,6 +44,8 @@ namespace Bilten.Data.Migrations
                     b.Property<int>("PodorganizacionaJedinicaId");
 
                     b.Property<string>("Prijavitelj");
+
+                    b.Property<string>("SlikaPath");
 
                     b.Property<int>("VrsteId");
 

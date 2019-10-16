@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Bilten.Data;
 using Bilten.Data.Models;
 using Bilten.Web.Areas.AdministratorModul.ViewModels.Dogadjaj;
 using Bilten.Web.Helper;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +19,12 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
     public class DogadjajController : Controller
     {
         private MojContext _context;
+        private readonly IHostingEnvironment he;
 
-        public DogadjajController(MojContext context)
+        public DogadjajController(MojContext context, IHostingEnvironment e)
         {
             _context = context;
+            he = e;
         }
         public IActionResult Index()
         {
@@ -46,6 +51,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Prikazi(int kategorijeId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             DogadjajPrikaziVM model = _context.Kategorije.Where(x => x.Id == kategorijeId).Select(x => new DogadjajPrikaziVM
             {
                 KategorijaID = x.Id,
@@ -70,41 +82,17 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
             return View(model);
         }
 
-        public IActionResult Detalji(int dogadjajId)
-        {
-            DogadjajDetaljiVM model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).Select(x => new DogadjajDetaljiVM
-            {
-        //                    public string Kategorija { get; set; }
-        //public int KategorijaID { get; set; }
-        //public string OrganizacioneJedinice { get; set; }
-        //public string PodorganizacioneJedinice { get; set; }
-        //public string Vrste { get; set; }
-        //public DateTime DatumDogadjaja { get; set; }
-        //public string MjestoDogadjaja { get; set; }
-        //public DateTime DatumPrijave { get; set; }
-        //public string Prijavitelj { get; set; }
-        //public string Opis { get; set; }
-        //public List<string> mjere { get; set; }
-        DogadjajID = x.Id,
-        Kategorija = x.Kategorije.Naziv,
-        OrganizacioneJedinice = x.OrganizacionaJedinica.Naziv,
-        PodorganizacioneJedinice = x.PodorganizacionaJedinica.Naziv,
-        Vrste = x.Vrste.Naziv,
-        DatumDogadjaja = (DateTime)x.DatumDogadjaja,
-        MjestoDogadjaja = x.MjestoDogadjaja,
-        DatumPrijave = (DateTime)x.DatumPrijave,
-        Prijavitelj = x.Prijavitelj,
-        Opis = x.Opis
 
-
-            }).FirstOrDefault();
-
-            return View(model);
-
-        }
 
         public IActionResult Obrisi(int dogadjajId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             Dogadjaj temp = _context.Dogadjaj.Where(x => x.Id == dogadjajId).FirstOrDefault();
 
             _context.Dogadjaj.Remove(temp);
@@ -117,6 +105,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Dodaj(int kategorijeId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             DogadjajDodajVM model = _context.Kategorije.Where(x => x.Id == kategorijeId).Select(x => new DogadjajDodajVM
             {
                 KategorijaID = x.Id,
@@ -150,11 +145,18 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Uredi(int dogadjajId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             DogadjajUrediVM model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).Select(x => new DogadjajUrediVM
             {
                 DogadjajID = x.Id,
                 KategorijaID = x.KategorijeId,
-                DatumDogadjaja = x.DatumDogadjaja.ToString(),
+                DatumDogadjaja = (DateTime)x.DatumDogadjaja,
                 MjestoDogadjaja = x.MjestoDogadjaja,
                 DatumPrijave = x.DatumPrijave.ToString(),
                 Prijavitelj = x.Prijavitelj,
@@ -165,6 +167,7 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 PodOrgID = x.PodorganizacionaJedinicaId,
                 VrsteTekst = x.Vrste.Naziv,
                 VrsteID = x.VrsteId,
+                Slika = x.SlikaPath
 
             }).FirstOrDefault();
 
@@ -188,7 +191,9 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
             return View(model);
         }
 
-        public IActionResult Snimi(int kategorijaId, int vrstaId, int orgJedinicaId,int PodorgJedinicaId,DateTime datumDog,string mjesto,DateTime datumPrijave,string prijavitelj,string opis)
+        [HttpPost]
+        public IActionResult Snimi(int kategorijaId, int vrstaId, int orgJedinicaId, int PodorgJedinicaId, DateTime datumDog,
+            string mjesto, DateTime datumPrijave, string prijavitelj, string opis, IFormFile SlikaFF)
         {
             KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
             Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
@@ -209,25 +214,25 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
             novi.Prijavitelj = prijavitelj;
             novi.Opis = opis;
 
+            string uniqueFileName = null;
+            if (SlikaFF != null)
+            {
+                string uploadsFolder = Path.Combine(he.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + SlikaFF.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                SlikaFF.CopyTo(new FileStream(filePath, FileMode.Create));
+
+                novi.SlikaPath = uniqueFileName;
+
+            }
+
+
             _context.Dogadjaj.Add(novi);
             _context.SaveChanges();
 
-            //List<Student> s = db.Student.ToList();
-            //foreach (var x in s)
-            //{
-            //    IspitStavka ist = new IspitStavka()
-            //    {
-            //        IspitId = i.Id,
-            //        Pristupio = true,
-            //        Ocjena = 6,
-            //        StudentId = x.Id
-            //    };
-            //    db.IspitStavka.Add(ist);
-            //    db.SaveChanges();
+            List<Mjere> M = _context.Mjere.Where(z => z.KategorijeId == kategorijaId).ToList();
 
-            List<Mjere> M = _context.Mjere.Where(z=>z.KategorijeId == kategorijaId).ToList();
-
-            foreach(var x in M)
+            foreach (var x in M)
             {
                 DogadjajiMjere DM = new DogadjajiMjere()
                 {
@@ -244,6 +249,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Lista2(string SearchString, string sortOrder)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             List<Dogadjaj> dogadjaji = _context.Dogadjaj
                 .Include(x => x.Vrste).Include(y => y.Kategorije)
                 .Include(a => a.OrganizacionaJedinica)
@@ -251,9 +263,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
             if (!String.IsNullOrEmpty(SearchString))
             {
-                dogadjaji = dogadjaji.Where(s => s.Vrste.Naziv.Contains(SearchString)
-                || s.MjestoDogadjaja.Contains(SearchString)
+                List<Dogadjaj> dogadjaji1 = _context.Dogadjaj
+                .Include(x => x.Vrste).Include(y => y.Kategorije)
+                .Include(a => a.OrganizacionaJedinica)
+                .Include(z => z.PodorganizacionaJedinica).Where(s => s.Vrste.Naziv.Contains(SearchString) || s.MjestoDogadjaja.Contains(SearchString)
                 || s.Opis.Contains(SearchString)).ToList();
+
+                return View(dogadjaji1);
             }
 
             ViewBag.Vrste = sortOrder == "Vrste" ? "Vrste_desc" : "Vrste";
@@ -279,7 +295,9 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
             return View(dogadjaji);
         }
 
-        public IActionResult SnimiPromjene(int dogadjajId, int vrsteId, int orgJedId, int podOrgID, string mjesto, DateTime datumDog, string datumPrijave, string prijavitelj, string opis)
+        [HttpPost]
+        public IActionResult SnimiPromjene(int dogadjajId, int vrsteId, int orgJedId, int podOrgID, string mjesto, 
+            DateTime datumDog, string datumPrijave, string prijavitelj, string opis, IFormFile SlikaFF)
         {
             KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
             Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
@@ -299,10 +317,91 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
             novi.Prijavitelj = prijavitelj;
             novi.Opis = opis;
 
+            string uniqueFileName = null;
+            if (SlikaFF != null)
+            {
+                string uploadsFolder = Path.Combine(he.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + SlikaFF.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                SlikaFF.CopyTo(new FileStream(filePath, FileMode.Create));
+
+                novi.SlikaPath = uniqueFileName;
+
+            }
+           
+
             _context.Dogadjaj.Update(novi);
             _context.SaveChanges();
 
-            return Redirect("/AdministratorModul/Dogadjaj/Detalji?=" + novi.Id);
+            return Redirect("/AdministratorModul/Dogadjaj/Detalji2?=" + novi.Id);
+        }
+
+        public IActionResult Detalji2(int dogadjajId)
+        {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
+            //Dogadjaj model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).FirstOrDefault();
+
+            Dogadjaj dogadjaj = _context.Dogadjaj
+            .Include(x => x.Vrste).Include(y => y.Kategorije)
+            .Include(a => a.OrganizacionaJedinica)
+            .Include(z => z.PodorganizacionaJedinica).Where(s=>s.Id == dogadjajId).FirstOrDefault();
+
+            return View(dogadjaj);
+        }
+
+        public IActionResult ObrisiSliku(int dogadjajId)
+        {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
+            Dogadjaj temp = _context.Dogadjaj.Where(x => x.Id == dogadjajId).FirstOrDefault();
+
+            if (temp.SlikaPath != null)
+            {
+                string uploadsFolder = Path.Combine(he.WebRootPath, "images");
+                string filePath = Path.Combine(uploadsFolder, temp.SlikaPath);
+                //string putanja = filePath;
+                //var imagesFolder = System.IO.File.Exists(filePath);
+
+                //if (System.IO.File.Exists(filePath))
+                //{
+
+                //    System.IO.File.Delete(putanja);
+
+
+                //}
+
+
+                if (System.IO.File.Exists(filePath))
+                {
+                    try
+                    {
+                        System.GC.Collect();
+                        System.GC.WaitForPendingFinalizers();
+                        System.IO.File.Delete(filePath);
+
+                    }
+                    catch (Exception e) { }
+                }
+            }
+
+            temp.SlikaPath = null;
+
+            _context.Dogadjaj.Update(temp);
+            _context.SaveChanges();
+
+
+            return Redirect("/AdministratorModul/Dogadjaj/Uredi?=" + dogadjajId);
         }
     }
 }

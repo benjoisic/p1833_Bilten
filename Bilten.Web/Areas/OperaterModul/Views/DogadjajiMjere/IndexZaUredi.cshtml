@@ -1,41 +1,47 @@
 ﻿
 @{
     ViewData["Title"] = "IndexZaUredi";
-    Layout = "~/Views/Shared/_Layout-Operater.cshtml";
 }
 @using Bilten.Web.Areas.OperaterModul.ViewModels.DogadjajiMjere;
 @model DogadjajiMjereIndexZaUrediVM
 
 <input type="hidden" name="name" value="@Model.DogadjajID" />
-<h5>Poduzete mjere</h5>
-<hr />
-<table class="table table-bordered">
+<div class="card mb-2">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Odaberi mjere
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
 
-    <thead>
-        <tr>
-            <th>Naziv</th>
-            <th>Mjera poduzeta</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var x in Model.Rows)
-        {
-            <tr>
-                <td style="width:20%">@x.Mjera</td>
-                <td style="width:10%">
-                    @if (x.Poduzeta == true)
+                <thead>
+                    <tr>
+                        <th>Naziv</th>
+                        <th>Poduzeta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in Model.Rows)
                     {
-                        <a href="/OperaterModul/DogadjajiMjere/Poduzeta?=@x.DogadjajiMjereID" class="btn btn-success">DA</a>
-                    }
-                    else
-                    {
-                        <a href="/OperaterModul/DogadjajiMjere/NijePoduzeta?=@x.DogadjajiMjereID" class="btn btn-danger">NE</a>
+                        <tr>
+                            <td>@x.Mjera</td>
+                            <td width="10">
+                                @if (x.Poduzeta == true)
+                                {
+                                    <a href="/OperaterModul/DogadjajiMjere/Poduzeta?=@x.DogadjajiMjereID" class="btn btn-success">DA</a>
+                                }
+                                else
+                                {
+                                    <a href="/OperaterModul/DogadjajiMjere/NijePoduzeta?=@x.DogadjajiMjereID" class="btn btn-danger">NE</a>
 
-                    }
+                                }
 
-                </td>
-            </tr>
-        }
-    </tbody>
-    @*<a href="/AdministratorModul/DogadjajiMjere/Dodaj?=@Model.DogadjajID" class="btn btn-danger">Dodaj</a>*@
-</table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                @*<a href="/AdministratorModul/DogadjajiMjere/Dodaj?=@Model.DogadjajID" class="btn btn-danger">Dodaj</a>*@
+            </table>
+        </div>
+    </div>
+</div>

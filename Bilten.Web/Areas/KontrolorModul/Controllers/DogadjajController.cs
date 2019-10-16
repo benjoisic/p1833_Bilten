@@ -12,6 +12,7 @@ using Rotativa.Core;
 using Rotativa.AspNetCore;
 using PagedList.Mvc;
 using PagedList;
+using Bilten.Web.Helper;
 
 namespace Bilten.Web.Areas.KontrolorModul.Controllers
 {
@@ -28,17 +29,27 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
 
         public IActionResult Index(string SearchString, string sortOrder)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 3)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             List<Dogadjaj> dogadjaji = _context.Dogadjaj
                 .Include(x => x.Vrste).Include(y => y.Kategorije)
                 .Include(a => a.OrganizacionaJedinica)
                 .Include(z => z.PodorganizacionaJedinica).ToList();
 
-            
-
             if (!String.IsNullOrEmpty(SearchString))
             {
-                dogadjaji = dogadjaji.Where(s => s.Vrste.Naziv.Contains(SearchString)
-                || s.MjestoDogadjaja.Contains(SearchString) || s.Opis.Contains(SearchString)).ToList();
+                List<Dogadjaj> dogadjaji1 = _context.Dogadjaj
+                .Include(x => x.Vrste).Include(y => y.Kategorije)
+                .Include(a => a.OrganizacionaJedinica)
+                .Include(z => z.PodorganizacionaJedinica).Where(s => s.Vrste.Naziv.Contains(SearchString) || s.MjestoDogadjaja.Contains(SearchString)
+                || s.Opis.Contains(SearchString)).ToList();
+
+                return View(dogadjaji1);
             }
 
             ViewBag.Vrste = sortOrder == "Vrste" ? "Vrste_desc" : "Vrste";
@@ -66,6 +77,13 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
 
         public IActionResult Odabran(int dogadjajId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 3)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             Dogadjaj temp = _context.Dogadjaj.Where(x => x.Id == dogadjajId).FirstOrDefault();
 
             temp.Odabran = false;
@@ -78,6 +96,13 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
 
         public IActionResult NijeOdabran(int dogadjajId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 3)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             Dogadjaj temp = _context.Dogadjaj.Where(x => x.Id == dogadjajId).FirstOrDefault();
 
             temp.Odabran = true;
@@ -90,28 +115,43 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
 
         public IActionResult Detalji(int dogadjajId)
         {
-            DogadjajDetaljiVM model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).Select(x => new DogadjajDetaljiVM
-            {
-                DogadjajID = x.Id,
-                Kategorija = x.Kategorije.Naziv,
-                OrganizacioneJedinice = x.OrganizacionaJedinica.Naziv,
-                PodorganizacioneJedinice = x.PodorganizacionaJedinica.Naziv,
-                Vrste = x.Vrste.Naziv,
-                DatumDogadjaja = (DateTime)x.DatumDogadjaja,
-                MjestoDogadjaja = x.MjestoDogadjaja,
-                DatumPrijave = (DateTime)x.DatumPrijave,
-                Prijavitelj = x.Prijavitelj,
-                Opis = x.Opis
+          
+            //Dogadjaj model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).FirstOrDefault();
 
+            Dogadjaj dogadjaj = _context.Dogadjaj
+            .Include(x => x.Vrste).Include(y => y.Kategorije)
+            .Include(a => a.OrganizacionaJedinica)
+            .Include(z => z.PodorganizacionaJedinica).Where(s => s.Id == dogadjajId).FirstOrDefault();
 
-            }).FirstOrDefault();
-
-            return View(model);
+            return View(dogadjaj);
 
         }
 
+
+        public IActionResult Detalji2(int dogadjajId)
+        {
+
+            //Dogadjaj model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).FirstOrDefault();
+
+            Dogadjaj dogadjaj = _context.Dogadjaj
+            .Include(x => x.Vrste).Include(y => y.Kategorije)
+            .Include(a => a.OrganizacionaJedinica)
+            .Include(z => z.PodorganizacionaJedinica).Where(s => s.Id == dogadjajId).FirstOrDefault();
+
+            return View(dogadjaj);
+
+        }
+
+
         public IActionResult ZvanicniBilten(string SearchString, string sortOrder)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 3)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             List<Dogadjaj> dogadjaji = _context.Dogadjaj.Where(x=>x.Odabran == true)
                 .Include(x => x.Vrste).Include(y => y.Kategorije)
                 .Include(a => a.OrganizacionaJedinica)
@@ -167,6 +207,13 @@ namespace Bilten.Web.Areas.KontrolorModul.Controllers
 
         public ActionResult PrintViewToPdf()
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 3)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             List<Dogadjaj> dogadjaji = _context.Dogadjaj.Where(x => x.Odabran == true)
               .Include(x => x.Vrste).Include(y => y.Kategorije)
               .Include(a => a.OrganizacionaJedinica)

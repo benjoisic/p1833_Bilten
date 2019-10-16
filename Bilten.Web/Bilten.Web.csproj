@@ -6,12 +6,16 @@
 
   <ItemGroup>
     <Compile Remove="Areas\OperaterModul\Data\**" />
+    <Compile Remove="Areas\OperaterModul\Models\**" />
     <Compile Remove="wwwroot\Rotativa\**" />
     <Content Remove="Areas\OperaterModul\Data\**" />
+    <Content Remove="Areas\OperaterModul\Models\**" />
     <Content Remove="wwwroot\Rotativa\**" />
     <EmbeddedResource Remove="Areas\OperaterModul\Data\**" />
+    <EmbeddedResource Remove="Areas\OperaterModul\Models\**" />
     <EmbeddedResource Remove="wwwroot\Rotativa\**" />
     <None Remove="Areas\OperaterModul\Data\**" />
+    <None Remove="Areas\OperaterModul\Models\**" />
     <None Remove="wwwroot\Rotativa\**" />
   </ItemGroup>
 
@@ -33,7 +37,25 @@
     <Content Update="Areas\AdministratorModul\Views\Dogadjaj\Lista2.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\KontrolorModul\Views\Dogadjaj\Detalji2.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\KontrolorModul\Views\Home\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\KontrolorModul\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\KontrolorModul\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\OperaterModul\Views\Dogadjaj\Detalji2.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\OperaterModul\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\OperaterModul\Views\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Autentifikacija\Index.cshtml">
@@ -108,10 +130,6 @@
     <Content Update="Views\Shared\_LayoutAnonymous.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\OperaterModul\Models\" />
   </ItemGroup>
 
   <ItemGroup>

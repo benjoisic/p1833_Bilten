@@ -19,6 +19,7 @@ namespace Bilten.Web.Areas.KontrolorModul.ViewModels
         public DateTime DatumPrijave { get; set; }
         public string Prijavitelj { get; set; }
         public string Opis { get; set; }
+
         public List<string> mjere { get; set; }
     }
 }

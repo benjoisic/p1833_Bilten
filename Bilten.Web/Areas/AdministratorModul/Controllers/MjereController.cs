@@ -116,13 +116,19 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
                 TempData["error_poruka"] = "Nemate pravo pristupa!";
                 return Redirect("/Autentifikacija/Index");
             }
-            DogadjajiMjere temp1 = _context.DogadjajiMjere.Where(y => y.MjereId == mjeraId).FirstOrDefault();
+            List<DogadjajiMjere> temp1 = _context.DogadjajiMjere.Where(y => y.MjereId == mjeraId).ToList();
 
-            if(temp1 != null)
+            foreach (var item in temp1)
             {
-                _context.DogadjajiMjere.Remove(temp1);
-                _context.SaveChanges();
+                if (temp1 != null)
+                {
+                    _context.DogadjajiMjere.Remove(item);
+                    _context.SaveChanges();
+                }
             }
+            
+
+            
 
             Mjere temp = _context.Mjere.Where(x => x.Id == mjeraId).FirstOrDefault();
 

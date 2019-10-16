@@ -5,11 +5,13 @@
 }
 @using Bilten.Web.Areas.OperaterModul.ViewModels.Dogadjaj;
 @model DogadjajDodajVM
+@using Microsoft.AspNetCore.Mvc.TagHelpers;
 
-<div>
-    <h2 style="display:inline-block">Dodaj novi događaj za kategoriju "<b>@Model.Kategorija</b>"</h2>
-</div>
-<form action="/OperaterModul/Dogadjaj/Snimi" style="width:700px;  padding:10px;">
+<br />
+<h4>Dodaj novi događaj za kategoriju "<b>@Model.Kategorija</b>"</h4>
+
+
+<form asp-action="Snimi" asp-controller="Dogadjaj" enctype="multipart/form-data" style="width:700px;  padding:10px;">
 
     <hr />
     <input type="text" name="kategorijaId" value="@Model.KategorijaID" hidden />
@@ -73,10 +75,25 @@
     <textarea name="opis" class="form-control"></textarea>
     <br />
 
+    <div class="col-md-10">
+        <label asp-for="SlikaFF"></label>
+                <div class="custom-file">
+            <input asp-for="SlikaFF" class="form-control custom-file-input" />
+            <label class="custom-file-label">Postavi sliku..</label>
+        </div>
+    </div>
+
+    <br />
     <input type="submit" class="btn btn-success" value="Snimi" />
     <a href="/OperaterModul" class="btn btn-danger" style="margin-left:10px;">Odustani</a>
     <br />
     <br />
 </form>
-<hr />
-<br /><br />
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    });
+</script>

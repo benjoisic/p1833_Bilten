@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Uredi";
     Layout = "~/Views/Shared/_Layout-Admin.cshtml";
+
+    var slikaPath = "~/images/" + (Model.Slika ?? "noimage.jpg");
 }
 @using Bilten.Web.Areas.AdministratorModul.ViewModels.Dogadjaj;
 @model DogadjajUrediVM
@@ -11,7 +13,7 @@
 
     <hr />
 </div>
-<form action="/AdministratorModul/Dogadjaj/SnimiPromjene" style="width:70%; padding:10px">
+<form asp-action="SnimiPromjene" asp-controller="Dogadjaj" enctype="multipart/form-data" style="width:70%; padding:10px">
     <input type="text" name="dogadjajId" value="@Model.DogadjajID" hidden />
 
     <label><b>Vrsta događaja:</b></label>
@@ -84,18 +86,55 @@
     <label><b>Opis:</b></label>
     <input type="text" name="opis" class="form-control" value="@Model.Opis" />
     <br />
-    <span>
-        <input type="submit" value="Sačuvaj promjene" class="btn btn-danger" />
-        <a href="/AdministratorModul/Dogadjaj/Detalji?=@Model.DogadjajID" class="btn btn-secondary">Detalji događaja</a>
-    </span>
-    <div  id="mjereStavkeUredi"></div>
+
     <br />
+    <br /><br />
+          <label><b>Slika:</b></label>
+          <br />
+    <img src="@slikaPath" alt="" asp-append-version="true" style="max-width:40%;" />
+
+    <div>
+        @{
+            if (Model.Slika == null)
+            {
+                <div class="col-md-10">
+                    <label asp-for="SlikaFF">No image</label>
+                    <div class="custom-file">
+                        <input asp-for="SlikaFF" class="form-control custom-file-input" />
+                        <label class="custom-file-label">Postavi sliku..</label>
+                    </div>
+                </div>
+            }
+        }
+                <br />
+        @{
+            if (Model.Slika != null)
+            {
+
+                
+                <a href="/AdministratorModul/Dogadjaj/ObrisiSliku?=@Model.DogadjajID" class="btn-sm btn-danger">Obriši sliku</a>
+            }
+        }
+    </div>
+    <br />
+    <hr />
+    <div id="mjereStavkeUredi"></div>
+    <br />
+    <hr />
+    <span>
+        <input type="submit" value="Snimi promjene" class="btn btn-success" />
+        <a href="/AdministratorModul/Dogadjaj/Detalji2?=@Model.DogadjajID" class="btn btn-primary">Detalji</a>
+    </span>
 </form>
 <br />
 
 <script>
-      $.get("/AdministratorModul/DogadjajiMjere/IndexZaUredi?=@Model.DogadjajID", function (rezultat, status) {
+    $.get("/AdministratorModul/DogadjajiMjere/IndexZaUredi?=@Model.DogadjajID", function (rezultat, status) {
           $("#mjereStavkeUredi").html(rezultat);
     });
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
 </script>
 

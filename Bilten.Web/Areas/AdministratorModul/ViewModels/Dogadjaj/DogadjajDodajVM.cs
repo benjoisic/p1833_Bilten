@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Bilten.Web.Areas.AdministratorModul.ViewModels.Dogadjaj
         public string Kategorija { get; set; }
 
             public List<SelectListItem> OrganizacioneJedinice { get; set; }
+        public int OrganizacionaJedinicaID { get; set; }
             public List<SelectListItem> PodorganizacioneJedinice { get; set; }
             public List<SelectListItem> Vrste { get; set; }
             public DateTime DatumDogadjaja { get; set; }
@@ -20,5 +22,6 @@ namespace Bilten.Web.Areas.AdministratorModul.ViewModels.Dogadjaj
             public string Prijavitelj { get; set; }
             public string Opis { get; set; }
             public List<string> mjere { get; set; }
+            public IFormFile SlikaFF { get; set; }
     }
 }

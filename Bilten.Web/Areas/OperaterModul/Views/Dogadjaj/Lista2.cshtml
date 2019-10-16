@@ -15,7 +15,7 @@
     <div class="input-group">
         @*Pretraga: @Html.TextBox("SearchString", "", new { placeholder = "po vrsti ili mjestu" })*@
         <span class="input-group-append">
-            <input class="form-control" type="text" placeholder="Pretraga po vrsti ili mjestu..." name="SearchString">
+            <input class="form-control" type="text" placeholder="po vrsti, mjestu ili opisu..." name="SearchString">
             <button class="btn btn-primary" type="submit">
                 <i class="fa fa-search"></i>
             </button>
@@ -51,7 +51,7 @@
                     <td maxlength="20">@x.Opis</td>
                     <td>
                         <a href="/OperaterModul/Dogadjaj/Uredi?=@x.Id" title="Uredi"><i class="fa fa-fw fa-edit"> </i></a>
-                        <a href="/OperaterModul/Dogadjaj/Detalji?=@x.Id" title="Detalji"><i class="fa fa-fw fa-book"> </i> </a>
+                        <a href="/OperaterModul/Dogadjaj/Detalji2?=@x.Id" title="Detalji"><i class="fa fa-fw fa-book"> </i> </a>
                         <a href="/OperaterModul/Dogadjaj/Obrisi?=@x.Id" title="Obrisi"><i class="fa fa-fw fa-close text-danger"> </i> </a>
                     </td>
                 </tr>

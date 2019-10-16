@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Bilten.Data;
 using Bilten.Data.Models;
 using Bilten.Web.Areas.AdministratorModul.ViewModels.DogadjajiMjere;
+using Bilten.Web.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bilten.Web.Areas.AdministratorModul.Controllers
@@ -20,7 +21,14 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
             }
 
             public IActionResult Index(int dogadjajId)
+        {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
             {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             DogadjajiMjereIndexVM model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).Select(x => new DogadjajiMjereIndexVM
             {
                 DogadjajID = x.Id,
@@ -39,6 +47,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult IndexZaUredi(int dogadjajId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             DogadjajiMjereIndexZaUrediVM model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).Select(x => new DogadjajiMjereIndexZaUrediVM
             {
                 DogadjajID = x.Id,
@@ -57,6 +72,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
             public IActionResult Dodaj(int dogadjajId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             DogadjajiMjereDodajVM model = _context.Dogadjaj.Where(x => x.Id == dogadjajId).Select(x => new DogadjajiMjereDodajVM
             {
                 DogadjajID = x.Id,
@@ -75,6 +97,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Snimi(int dogadjajId, int mjeraId, bool poduzeta)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             DogadjajiMjere DM = new DogadjajiMjere();
 
             DM.DogadjajId = dogadjajId;
@@ -89,6 +118,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult Poduzeta(int dogadjajiMjereId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             //Mjere temp = _context.Mjere.Where(x => x.Id == mjeraId).FirstOrDefault();
             DogadjajiMjere temp = _context.DogadjajiMjere.Where(x => x.Id == dogadjajiMjereId).FirstOrDefault();
 
@@ -109,6 +145,13 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
 
         public IActionResult NijePoduzeta(int dogadjajiMjereId)
         {
+            KorisnickiNalog korisnik = HttpContext.GetLogiraniKorisnik();
+            Korisnici k = _context.Korisnici.Where(x => x.KorisnickiNalogId == korisnik.Id).FirstOrDefault();
+            if (korisnik == null || k.VrstaKorisnikaId != 1)
+            {
+                TempData["error_poruka"] = "Nemate pravo pristupa!";
+                return Redirect("/Autentifikacija/Index");
+            }
             DogadjajiMjere temp = _context.DogadjajiMjere.Where(x => x.Id == dogadjajiMjereId).FirstOrDefault();
 
             temp.MjeraPoduzeta = true;

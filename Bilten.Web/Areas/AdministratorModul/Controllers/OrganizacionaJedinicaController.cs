@@ -88,6 +88,28 @@ namespace Bilten.Web.Areas.AdministratorModul.Controllers
             // <a href="/OrganizacionaJedinica/Obrisi?=@x.OrganizacionaJedinicaID">Obrisi | </a>
             OrganizacionaJedinica temp = _context.OrganizacionaJedinica.Where(x => x.Id == OrganizacionaJedinicaID).FirstOrDefault();
 
+            PodorganizacionaJedinica temp1 = _context.PodorganizacionaJedinica.Where(y => y.OrganizacionaJedinicaId == temp.Id).FirstOrDefault();
+
+            List<Dogadjaj> temp2 = _context.Dogadjaj.Where(s => s.OrganizacionaJedinicaId == temp.Id).ToList();
+
+
+            foreach (var item in temp2)
+            {
+                if (temp2 != null)
+                {
+                    _context.Dogadjaj.Remove(item);
+                    _context.SaveChanges();
+                }
+            }
+           
+
+
+            if (temp1 != null)
+            {
+                _context.PodorganizacionaJedinica.Remove(temp1);
+                _context.SaveChanges();
+            }
+
 
             _context.OrganizacionaJedinica.Remove(temp);
             _context.SaveChanges();
